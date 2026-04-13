@@ -30,7 +30,7 @@ export default function Hero() {
     <section
       id="inicio"
       className="relative flex flex-col overflow-hidden"
-      style={{ minHeight: "100dvh", backgroundColor: "#050c06" }}
+      style={{ minHeight: "100dvh", width: "100%", backgroundColor: "#050c06" }}
     >
       {/* ── Video background ── */}
       {VIDEOS.map((src, i) => (
@@ -44,13 +44,9 @@ export default function Hero() {
           onEnded={() => handleEnded(i)}
           style={{
             position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%) translateZ(0)",
-            width: "110%",
-            height: "110%",
-            minWidth: "110%",
-            minHeight: "110%",
+            inset: 0,
+            width: "100%",
+            height: "100%",
             objectFit: "cover",
             objectPosition: "center center",
             display: "block",
