@@ -27,10 +27,22 @@ export default function Hero() {
   }, []);
 
   return (
+    /*
+     * CSS Grid overlay — la técnica más confiable para video BG en Safari iOS.
+     * Todos los children ocupan la misma cell (1/1), se apilan por z-index.
+     * Evita los bugs de overflow:hidden + position:absolute + inset en WebKit.
+     */
     <section
       id="inicio"
-      className="relative flex flex-col overflow-hidden"
-      style={{ minHeight: "100dvh", width: "100%", backgroundColor: "#050c06" }}
+      style={{
+        display: "grid",
+        gridTemplateRows: "1fr",
+        gridTemplateColumns: "1fr",
+        minHeight: "100dvh",
+        width: "100%",
+        backgroundColor: "#050c06",
+        position: "relative",
+      }}
     >
       {/* ── Video background ── */}
       {VIDEOS.map((src, i) => (
@@ -39,12 +51,12 @@ export default function Hero() {
           ref={videoRefs[i]}
           src={src}
           muted
+          autoPlay={i === 0}
           playsInline
           preload={i === 0 ? "auto" : "metadata"}
           onEnded={() => handleEnded(i)}
           style={{
-            position: "absolute",
-            inset: 0,
+            gridArea: "1 / 1",
             width: "100%",
             height: "100%",
             objectFit: "cover",
@@ -59,15 +71,22 @@ export default function Hero() {
 
       {/* ── Overlay base — contraste mínimo WCAG AA ── */}
       <div
-        className="absolute inset-0 z-[1]"
-        style={{ background: "rgba(3,8,4,0.38)" }}
+        style={{
+          gridArea: "1 / 1",
+          zIndex: 1,
+          background: "rgba(3,8,4,0.38)",
+          pointerEvents: "none",
+        }}
       />
 
       {/* ── Logo D — watermark fondo, derecha, fusionado con la oscuridad ── */}
       <LogoMark
         aria-hidden="true"
         style={{
-          position: "absolute",
+          gridArea: "1 / 1",
+          position: "relative",
+          alignSelf: "flex-end",
+          justifySelf: "flex-end",
           right: "-6%",
           bottom: "6%",
           width: "54vw",
@@ -83,8 +102,10 @@ export default function Hero() {
 
       {/* ── Gradiente cinematográfico — quema top + bottom ── */}
       <div
-        className="absolute inset-0 z-[2]"
         style={{
+          gridArea: "1 / 1",
+          zIndex: 2,
+          pointerEvents: "none",
           background: `linear-gradient(
             180deg,
             rgba(3,8,4,0.72) 0%,
@@ -96,8 +117,11 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Contenido principal ── */}
-      <div className="relative z-10 flex flex-col justify-end md:justify-center flex-1 pb-16 md:pb-0">
+      {/* ── Contenido principal — misma grid cell, encima de todo ── */}
+      <div
+        className="flex flex-col justify-end md:justify-center pb-16 md:pb-0"
+        style={{ gridArea: "1 / 1", zIndex: 10, position: "relative" }}
+      >
         <div className="max-w-[1250px] mx-auto w-full px-6 md:px-10 md:text-center">
 
           {/* Eyebrow — coordenadas */}
@@ -134,7 +158,7 @@ export default function Hero() {
           <motion.h1
             className="font-sans"
             style={{
-              fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)",
+              fontSize: "clamp(3.1rem, 8.5vw, 7.2rem)",
               fontWeight: 800,
               lineHeight: 0.92,
               color: "#F0EBE1",

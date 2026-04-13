@@ -68,13 +68,15 @@ html {
   color-scheme: light only;
   margin: 0;
   padding: 0;
-  /* overflow-x en html, no en body — evita el gap izquierdo con elementos fixed */
-  overflow-x: clip;
+  /* overflow-x: hidden en html previene scroll horizontal sin romper position:fixed */
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
+  /* max-width: 100% como segunda capa de protección contra overflow horizontal */
+  max-width: 100%;
   background-color: var(--color-base);
   color: var(--color-text-primary);
   font-family: var(--font-jakarta), system-ui, sans-serif;

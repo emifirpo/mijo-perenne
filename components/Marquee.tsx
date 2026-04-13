@@ -25,7 +25,8 @@ export default function Marquee() {
       aria-hidden="true"
       className="relative overflow-hidden flex items-center"
       style={{
-        padding: "clamp(2.5rem, 5vh, 4.5rem) 0",
+        paddingTop: "clamp(1rem, 2vh, 1.75rem)",
+        paddingBottom: "clamp(2.5rem, 5vh, 4.5rem)",
         cursor: "default",
       }}
     >
