@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   SISTEMA DE DISEÑO — SANDRO GRAND
+   Light-first · Exergy3 structure · Hyper Farms visual language
+   ───────────────────────────────────────────── */
+
+@theme {
+  /* ── Paleta — light-first (Exergy3 style) ── */
+  --color-base:           #F5EDD8;
+  --color-surface:        #FFFFFF;
+  --color-surface-2:      #F8F3E4;
+  --color-surface-3:      #F0E8CC;
+  --color-border:         rgba(0,0,0,0.08);
+  --color-border-gold:    rgba(179,168,106,0.3);
+
+  /* ── Dark sections (hero, stats, ciclo, contacto, footer) ── */
+  --color-dark:           #005F02;
+  --color-dark-2:         #096B04;
+  --color-dark-3:         #127714;
+  --color-dark-border:    rgba(255,255,255,0.08);
+
+  /* ── Texto en fondos claros ── */
+  --color-text-primary:   #005F02;
+  --color-text-secondary: rgba(0,95,2,0.62);
+  --color-text-muted:     rgba(0,95,2,0.38);
+
+  /* ── Texto en fondos oscuros ── */
+  --color-text-on-dark:           #F0E8C4;
+  --color-text-on-dark-secondary: rgba(240,232,196,0.6);
+  --color-text-on-dark-muted:     rgba(240,232,196,0.3);
+
+  /* ── Acentos — tan/caqui cálido ── */
+  --color-dorado:         #B3A86A;
+  --color-dorado-claro:   #C5BC82;
+  --color-dorado-dim:     rgba(179,168,106,0.1);
+
+  /* ── Verdes complementarios ── */
+  --color-verde-pampa:    #005F02;
+  --color-verde-claro:    #4F7A52;
+
+  /* ── Sage/salvia — tono medio de la paleta ── */
+  --color-mint-pale:      #4F7A52;
+  --color-mint-border:    rgba(79,122,82,0.18);
+  --color-mint-border-strong: rgba(79,122,82,0.35);
+
+  /* ── Legado ── */
+  --color-crema:          #F0E8C4;
+  --color-carbon:         #005F02;
+
+  /* ── Tipografía ── */
+  --font-serif:           var(--font-jakarta);
+  --font-sans:            var(--font-jakarta);
+
+  /* ── Radios ── */
+  --radius-pill:          9999px;
+  --radius-card:          12px;
+  --radius-sm:            6px;
+}
+
+/* ── Base ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--color-base);
+  color-scheme: light only;
+  margin: 0;
+  padding: 0;
+  /* overflow-x en html, no en body — evita el gap izquierdo con elementos fixed */
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* NO overflow-x: hidden aquí — genera BFC que desplaza fixed elements */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+/* ── Marquee ────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 32s linear infinite; }
+
+@media (hover: hover) {
+  .animate-marquee:hover { animation-play-state: paused; }
+}
+
+/* ── Ping ───────────────────────────────────── */
+@keyframes ping-gold {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.animate-ping-gold { animation: ping-gold 2s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* ── Línea de scroll ────────────────────────── */
+@keyframes lineGrow {
+  0%   { transform: scaleY(0); opacity: 0; }
+  50%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0); opacity: 0; }
+}
+.scroll-line { animation: lineGrow 2.4s ease-in-out infinite; transform-origin: top; }
+
+/* ── Selección ──────────────────────────────── */
+::selection {
+  background-color: var(--color-dorado);
+  color: var(--color-dark);
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-base); }
+::-webkit-scrollbar-thumb { background: rgba(0,95,2,0.2); border-radius: 2px; }
+
+/* ── Tag label ──────────────────────────────── */
+.tag-label {
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+}
+
+/* ── Dividers ───────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent);
+}
+.divider-dark {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+/* ── Dot grid — Hyper Farms texture ────────────── */
+/* Overlay pattern on dark sections */
+.dot-grid-dark {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+/* Overlay pattern on light sections */
+.dot-grid-light {
+  background-image: radial-gradient(circle, rgba(0,95,2,0.07) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+
+/* ── Pill badge — Hyper Farms component ────────── */
+/* For institution tags, floating data points */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  padding: 5px 14px;
+  white-space: nowrap;
+}
+.pill-badge-gold {
+  color: var(--color-dorado);
+  background: rgba(179,168,106,0.08);
+  border: 1px solid rgba(179,168,106,0.28);
+}
+.pill-badge-dark {
+  color: var(--color-text-on-dark-secondary);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+}
+.pill-badge-mint {
+  color: var(--color-mint-pale);
+  background: rgba(79,122,82,0.08);
+  border: 1px solid rgba(79,122,82,0.22);
+}
+
+/* ── ScrollyVideo — forzar fill del container ── */
+[data-scrolly-container] {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+[data-scrolly-container] video,
+[data-scrolly-container] canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+/* ── Image frame border — Hyper Farms treatment ── */
+.img-frame {
+  border: 1px solid var(--color-mint-border-strong);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.img-frame-dark {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}

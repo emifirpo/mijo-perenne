@@ -1,0 +1,103 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="soil02" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#030d04"/>
+      <stop offset="40%" stop-color="#051408"/>
+      <stop offset="100%" stop-color="#081c0a"/>
+    </linearGradient>
+    <radialGradient id="vanish02" cx="50%" cy="22%" r="45%">
+      <stop offset="0%" stop-color="#0c2410" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0c2410" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Seed dot gradient -->
+    <radialGradient id="seed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b3a86a" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#b3a86a" stop-opacity="0.1"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background soil -->
+  <rect width="900" height="600" fill="url(#soil02)"/>
+  <rect width="900" height="600" fill="url(#vanish02)"/>
+
+  <!-- Perspective furrow lines — converge toward top center -->
+  <!-- Each line: starts wide at the bottom, narrows toward a vanishing point at ~450,80 -->
+
+  <!-- Furrow 1 (leftmost) -->
+  <path d="M 0,600 Q 180,350 390,80"   stroke="rgba(179,168,106,0.12)" stroke-width="1.2" fill="none"/>
+  <!-- Furrow 2 -->
+  <path d="M 80,600 Q 230,350 415,80"  stroke="rgba(179,168,106,0.14)" stroke-width="1.2" fill="none"/>
+  <!-- Furrow 3 -->
+  <path d="M 180,600 Q 285,350 432,80" stroke="rgba(179,168,106,0.16)" stroke-width="1.3" fill="none"/>
+  <!-- Furrow 4 -->
+  <path d="M 290,600 Q 345,350 444,80" stroke="rgba(179,168,106,0.18)" stroke-width="1.4" fill="none"/>
+  <!-- Furrow 5 (center-left) -->
+  <path d="M 380,600 Q 400,350 448,80" stroke="rgba(179,168,106,0.20)" stroke-width="1.5" fill="none"/>
+  <!-- Furrow 6 (center) -->
+  <path d="M 450,600 Q 450,350 450,80" stroke="rgba(179,168,106,0.22)" stroke-width="1.5" fill="none"/>
+  <!-- Furrow 7 (center-right) -->
+  <path d="M 520,600 Q 500,350 452,80" stroke="rgba(179,168,106,0.20)" stroke-width="1.5" fill="none"/>
+  <!-- Furrow 8 -->
+  <path d="M 610,600 Q 555,350 456,80" stroke="rgba(179,168,106,0.18)" stroke-width="1.4" fill="none"/>
+  <!-- Furrow 9 -->
+  <path d="M 720,600 Q 615,350 468,80" stroke="rgba(179,168,106,0.16)" stroke-width="1.3" fill="none"/>
+  <!-- Furrow 10 -->
+  <path d="M 820,600 Q 670,350 485,80" stroke="rgba(179,168,106,0.14)" stroke-width="1.2" fill="none"/>
+  <!-- Furrow 11 (rightmost) -->
+  <path d="M 900,600 Q 720,350 510,80"  stroke="rgba(179,168,106,0.12)" stroke-width="1.2" fill="none"/>
+
+  <!-- Horizontal cross-lines (planting rows) — perspective spaced -->
+  <line x1="0"  y1="560" x2="900" y2="560" stroke="rgba(179,168,106,0.07)" stroke-width="0.8"/>
+  <line x1="0"  y1="500" x2="900" y2="500" stroke="rgba(179,168,106,0.07)" stroke-width="0.8"/>
+  <line x1="0"  y1="440" x2="900" y2="440" stroke="rgba(179,168,106,0.07)" stroke-width="0.8"/>
+  <line x1="20" y1="382" x2="880" y2="382" stroke="rgba(179,168,106,0.07)" stroke-width="0.8"/>
+  <line x1="60" y1="328" x2="840" y2="328" stroke="rgba(179,168,106,0.06)" stroke-width="0.7"/>
+  <line x1="110" y1="278" x2="790" y2="278" stroke="rgba(179,168,106,0.06)" stroke-width="0.7"/>
+  <line x1="170" y1="232" x2="730" y2="232" stroke="rgba(179,168,106,0.05)" stroke-width="0.6"/>
+  <line x1="240" y1="190" x2="660" y2="190" stroke="rgba(179,168,106,0.05)" stroke-width="0.6"/>
+  <line x1="310" y1="152" x2="590" y2="152" stroke="rgba(179,168,106,0.04)" stroke-width="0.5"/>
+  <line x1="370" y1="118" x2="530" y2="118" stroke="rgba(179,168,106,0.04)" stroke-width="0.5"/>
+
+  <!-- Seed dots at row/furrow intersections — multiple rows -->
+  <!-- Row at y≈560 — wide spacing -->
+  <circle cx="80"  cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="180" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="290" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="380" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="450" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="520" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="610" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="720" cy="560" r="2.5" fill="url(#seed)"/>
+  <circle cx="820" cy="560" r="2.5" fill="url(#seed)"/>
+
+  <!-- Row at y≈440 — medium spacing -->
+  <circle cx="180" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="290" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="380" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="450" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="520" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="610" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+  <circle cx="720" cy="440" r="2.2" fill="url(#seed)" opacity="0.8"/>
+
+  <!-- Row at y≈328 — tighter spacing -->
+  <circle cx="285" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="345" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="400" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="450" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="500" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="555" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+  <circle cx="615" cy="328" r="1.8" fill="url(#seed)" opacity="0.65"/>
+
+  <!-- Row at y≈232 -->
+  <circle cx="350" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="395" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="435" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="450" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="465" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="505" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+  <circle cx="550" cy="232" r="1.4" fill="url(#seed)" opacity="0.45"/>
+
+  <!-- Vanishing point glow -->
+  <circle cx="450" cy="80" r="60" fill="rgba(179,168,106,0.04)"/>
+  <circle cx="450" cy="80" r="25" fill="rgba(179,168,106,0.06)"/>
+</svg>

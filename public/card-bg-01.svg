@@ -1,0 +1,95 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky01" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#010602"/>
+      <stop offset="55%" stop-color="#041008"/>
+      <stop offset="100%" stop-color="#071a0c"/>
+    </linearGradient>
+    <radialGradient id="glow01" cx="48%" cy="78%" r="55%">
+      <stop offset="0%" stop-color="#7a5510" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#7a5510" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="moonGlow" cx="72%" cy="18%" r="12%">
+      <stop offset="0%" stop-color="#c4a84a" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#c4a84a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="900" height="600" fill="url(#sky01)"/>
+  <rect width="900" height="600" fill="url(#glow01)"/>
+  <rect width="900" height="600" fill="url(#moonGlow)"/>
+
+  <!-- Stars -->
+  <circle cx="80"  cy="55"  r="1"   fill="white" opacity="0.25"/>
+  <circle cx="155" cy="38"  r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="240" cy="70"  r="1.2" fill="white" opacity="0.3"/>
+  <circle cx="320" cy="30"  r="0.8" fill="white" opacity="0.18"/>
+  <circle cx="410" cy="58"  r="1"   fill="white" opacity="0.22"/>
+  <circle cx="500" cy="42"  r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="580" cy="75"  r="1"   fill="white" opacity="0.28"/>
+  <circle cx="650" cy="28"  r="0.7" fill="white" opacity="0.15"/>
+  <circle cx="730" cy="52"  r="1"   fill="white" opacity="0.22"/>
+  <circle cx="810" cy="38"  r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="860" cy="68"  r="1.2" fill="white" opacity="0.25"/>
+  <circle cx="190" cy="110" r="0.7" fill="white" opacity="0.12"/>
+  <circle cx="460" cy="95"  r="0.8" fill="white" opacity="0.15"/>
+  <circle cx="700" cy="115" r="0.6" fill="white" opacity="0.12"/>
+
+  <!-- Moon -->
+  <circle cx="648" cy="72" r="18" fill="#c4a84a" opacity="0.18"/>
+  <circle cx="648" cy="72" r="14" fill="#d4b85a" opacity="0.1"/>
+
+  <!-- Horizon glow line -->
+  <rect x="0" y="410" width="900" height="2" fill="rgba(179,140,40,0.06)"/>
+
+  <!-- Ground -->
+  <rect y="412" width="900" height="188" fill="#030b04"/>
+
+  <!-- Distant cattle silhouettes (very subtle) -->
+  <rect x="320" y="402" width="22" height="9"  rx="3" fill="#020804" opacity="0.9"/>
+  <rect x="355" y="404" width="18" height="7"  rx="2" fill="#020804" opacity="0.9"/>
+  <rect x="390" y="401" width="25" height="10" rx="3" fill="#020804" opacity="0.9"/>
+  <rect x="425" y="403" width="20" height="8"  rx="2" fill="#020804" opacity="0.9"/>
+  <rect x="458" y="402" width="22" height="9"  rx="3" fill="#020804" opacity="0.9"/>
+
+  <!-- Dry grass blades — sparse, varied heights -->
+  <!-- Left cluster -->
+  <path d="M 30,412 Q 27,375 33,338" stroke="#7a5c1a" stroke-width="1.4" fill="none" opacity="0.55"/>
+  <path d="M 38,412 Q 40,385 36,352" stroke="#8a6820" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M 50,412 Q 46,360 52,310" stroke="#6e5215" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M 60,412 Q 63,378 58,348" stroke="#7a5c1a" stroke-width="1.2" fill="none" opacity="0.45"/>
+  <path d="M 72,412 Q 68,365 74,320" stroke="#8a6820" stroke-width="1.4" fill="none" opacity="0.55"/>
+
+  <!-- Center-left cluster -->
+  <path d="M 130,412 Q 127,370 134,325" stroke="#7a5c1a" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M 142,412 Q 145,382 140,355" stroke="#6e5215" stroke-width="1.2" fill="none" opacity="0.45"/>
+  <path d="M 155,412 Q 151,358 158,305" stroke="#8a6820" stroke-width="1.6" fill="none" opacity="0.6"/>
+  <path d="M 165,412 Q 168,375 162,342" stroke="#7a5c1a" stroke-width="1.3" fill="none" opacity="0.5"/>
+
+  <!-- Center cluster -->
+  <path d="M 230,412 Q 226,362 232,318" stroke="#7a5c1a" stroke-width="1.5" fill="none" opacity="0.52"/>
+  <path d="M 245,412 Q 248,378 243,350" stroke="#8a6820" stroke-width="1.3" fill="none" opacity="0.45"/>
+  <path d="M 258,412 Q 254,355 260,298" stroke="#6e5215" stroke-width="1.6" fill="none" opacity="0.58"/>
+  <path d="M 270,412 Q 273,372 268,340" stroke="#7a5c1a" stroke-width="1.2" fill="none" opacity="0.42"/>
+  <path d="M 282,412 Q 278,360 285,312" stroke="#8a6820" stroke-width="1.4" fill="none" opacity="0.5"/>
+
+  <!-- Sparse center-right -->
+  <path d="M 490,412 Q 486,368 492,328" stroke="#7a5c1a" stroke-width="1.4" fill="none" opacity="0.45"/>
+  <path d="M 505,412 Q 508,380 503,350" stroke="#6e5215" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <path d="M 518,412 Q 514,358 520,308" stroke="#8a6820" stroke-width="1.5" fill="none" opacity="0.52"/>
+
+  <!-- Right cluster -->
+  <path d="M 650,412 Q 646,365 652,322" stroke="#7a5c1a" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M 663,412 Q 666,378 661,348" stroke="#8a6820" stroke-width="1.3" fill="none" opacity="0.45"/>
+  <path d="M 675,412 Q 671,355 677,305" stroke="#6e5215" stroke-width="1.6" fill="none" opacity="0.55"/>
+  <path d="M 688,412 Q 691,370 685,338" stroke="#7a5c1a" stroke-width="1.2" fill="none" opacity="0.42"/>
+
+  <!-- Far right -->
+  <path d="M 790,412 Q 786,368 792,330" stroke="#8a6820" stroke-width="1.4" fill="none" opacity="0.48"/>
+  <path d="M 805,412 Q 808,382 802,354" stroke="#7a5c1a" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <path d="M 820,412 Q 816,360 822,315" stroke="#6e5215" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M 835,412 Q 838,374 832,345" stroke="#8a6820" stroke-width="1.3" fill="none" opacity="0.45"/>
+  <path d="M 862,412 Q 858,362 864,320" stroke="#7a5c1a" stroke-width="1.4" fill="none" opacity="0.48"/>
+  <path d="M 875,412 Q 878,378 872,350" stroke="#6e5215" stroke-width="1.2" fill="none" opacity="0.4"/>
+</svg>

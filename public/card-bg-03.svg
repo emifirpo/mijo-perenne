@@ -1,0 +1,109 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg03" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020804"/>
+      <stop offset="50%" stop-color="#041006"/>
+      <stop offset="100%" stop-color="#071808"/>
+    </linearGradient>
+    <radialGradient id="coldGlow" cx="30%" cy="25%" r="40%">
+      <stop offset="0%" stop-color="#1a3a4a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a3a4a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dryGlow" cx="70%" cy="80%" r="40%">
+      <stop offset="0%" stop-color="#4a2a08" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#4a2a08" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bg03)"/>
+  <rect width="900" height="600" fill="url(#coldGlow)"/>
+  <rect width="900" height="600" fill="url(#dryGlow)"/>
+
+  <!-- Cracked earth pattern — irregular polygon network -->
+  <!-- The cracks are thin lines forming closed polygons -->
+
+  <!-- Main crack lines — large plates -->
+  <line x1="0"   y1="180" x2="240" y2="195" stroke="rgba(179,168,106,0.14)" stroke-width="0.8"/>
+  <line x1="240" y1="195" x2="420" y2="160" stroke="rgba(179,168,106,0.14)" stroke-width="0.8"/>
+  <line x1="420" y1="160" x2="600" y2="185" stroke="rgba(179,168,106,0.13)" stroke-width="0.8"/>
+  <line x1="600" y1="185" x2="780" y2="170" stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="780" y1="170" x2="900" y2="180" stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+
+  <line x1="0"   y1="360" x2="180" y2="375" stroke="rgba(179,168,106,0.14)" stroke-width="0.8"/>
+  <line x1="180" y1="375" x2="350" y2="355" stroke="rgba(179,168,106,0.13)" stroke-width="0.8"/>
+  <line x1="350" y1="355" x2="530" y2="370" stroke="rgba(179,168,106,0.14)" stroke-width="0.8"/>
+  <line x1="530" y1="370" x2="720" y2="350" stroke="rgba(179,168,106,0.13)" stroke-width="0.8"/>
+  <line x1="720" y1="350" x2="900" y2="365" stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+
+  <line x1="0"   y1="500" x2="220" y2="515" stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="220" y1="515" x2="440" y2="498" stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="440" y1="498" x2="650" y2="510" stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="650" y1="510" x2="900" y2="500" stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+
+  <!-- Vertical crack lines -->
+  <line x1="140" y1="0"   x2="155" y2="195"  stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="155" y1="195" x2="148" y2="375"  stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="148" y1="375" x2="160" y2="515"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="160" y1="515" x2="152" y2="600"  stroke="rgba(179,168,106,0.10)" stroke-width="0.8"/>
+
+  <line x1="350" y1="0"   x2="360" y2="160"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="360" y1="160" x2="368" y2="355"  stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="368" y1="355" x2="358" y2="498"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="358" y1="498" x2="365" y2="600"  stroke="rgba(179,168,106,0.10)" stroke-width="0.8"/>
+
+  <line x1="560" y1="0"   x2="548" y2="185"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="548" y1="185" x2="556" y2="370"  stroke="rgba(179,168,106,0.12)" stroke-width="0.8"/>
+  <line x1="556" y1="370" x2="545" y2="510"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="545" y1="510" x2="552" y2="600"  stroke="rgba(179,168,106,0.10)" stroke-width="0.8"/>
+
+  <line x1="750" y1="0"   x2="762" y2="170"  stroke="rgba(179,168,106,0.10)" stroke-width="0.8"/>
+  <line x1="762" y1="170" x2="752" y2="350"  stroke="rgba(179,168,106,0.11)" stroke-width="0.8"/>
+  <line x1="752" y1="350" x2="760" y2="500"  stroke="rgba(179,168,106,0.10)" stroke-width="0.8"/>
+  <line x1="760" y1="500" x2="755" y2="600"  stroke="rgba(179,168,106,0.09)" stroke-width="0.8"/>
+
+  <!-- Sub-cracks — diagonal fissures within plates -->
+  <line x1="155" y1="60"  x2="240" y2="195" stroke="rgba(179,168,106,0.08)" stroke-width="0.6"/>
+  <line x1="240" y1="195" x2="350" y2="90"  stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="360" y1="160" x2="420" y2="80"  stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="420" y1="160" x2="548" y2="100" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="548" y1="185" x2="600" y2="90"  stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="600" y1="185" x2="762" y2="120" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+
+  <line x1="148" y1="280" x2="240" y2="195" stroke="rgba(179,168,106,0.08)" stroke-width="0.6"/>
+  <line x1="240" y1="195" x2="360" y2="260" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="360" y1="160" x2="420" y2="280" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="420" y1="160" x2="548" y2="280" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="548" y1="185" x2="600" y2="280" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="600" y1="185" x2="752" y2="265" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+
+  <line x1="148" y1="445" x2="220" y2="375" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="220" y1="515" x2="350" y2="440" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="368" y1="355" x2="440" y2="455" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="440" y1="498" x2="556" y2="440" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="556" y1="370" x2="652" y2="455" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+  <line x1="652" y1="510" x2="755" y2="435" stroke="rgba(179,168,106,0.07)" stroke-width="0.6"/>
+
+  <!-- Frost crystals — small geometric shapes top-left area -->
+  <line x1="60"  cy="60" x2="60"  y2="100" stroke="rgba(180,220,255,0.1)" stroke-width="0.6"/>
+  <line x1="40"  cy="80" x2="80"  y2="80"  stroke="rgba(180,220,255,0.1)" stroke-width="0.6"/>
+  <line x1="45"  cy="65" x2="75"  y2="95"  stroke="rgba(180,220,255,0.08)" stroke-width="0.6"/>
+  <line x1="75"  cy="65" x2="45"  y2="95"  stroke="rgba(180,220,255,0.08)" stroke-width="0.6"/>
+
+  <line x1="200" y1="85" x2="200" y2="115" stroke="rgba(180,220,255,0.08)" stroke-width="0.6"/>
+  <line x1="186" y1="100" x2="214" y2="100" stroke="rgba(180,220,255,0.08)" stroke-width="0.6"/>
+  <line x1="190" y1="89" x2="210" y2="111" stroke="rgba(180,220,255,0.06)" stroke-width="0.6"/>
+  <line x1="210" y1="89" x2="190" y2="111" stroke="rgba(180,220,255,0.06)" stroke-width="0.6"/>
+
+  <line x1="95"  y1="140" x2="95"  y2="165" stroke="rgba(180,220,255,0.07)" stroke-width="0.5"/>
+  <line x1="83"  y1="152" x2="107" y2="152" stroke="rgba(180,220,255,0.07)" stroke-width="0.5"/>
+
+  <!-- Very subtle rain streaks (diagonal, top portion) -->
+  <line x1="480" y1="0"  x2="462" y2="55"  stroke="rgba(150,200,255,0.06)" stroke-width="0.7"/>
+  <line x1="530" y1="0"  x2="512" y2="55"  stroke="rgba(150,200,255,0.05)" stroke-width="0.7"/>
+  <line x1="580" y1="0"  x2="562" y2="55"  stroke="rgba(150,200,255,0.06)" stroke-width="0.7"/>
+  <line x1="630" y1="0"  x2="612" y2="55"  stroke="rgba(150,200,255,0.05)" stroke-width="0.7"/>
+  <line x1="680" y1="0"  x2="662" y2="55"  stroke="rgba(150,200,255,0.06)" stroke-width="0.7"/>
+  <line x1="730" y1="0"  x2="712" y2="55"  stroke="rgba(150,200,255,0.05)" stroke-width="0.7"/>
+  <line x1="800" y1="0"  x2="782" y2="55"  stroke="rgba(150,200,255,0.04)" stroke-width="0.7"/>
+</svg>

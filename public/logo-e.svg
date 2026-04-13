@@ -1,0 +1,74 @@
+<svg viewBox="0 0 200 178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand — Semilla de Mijo Perenne">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&amp;family=DM+Sans:wght@500&amp;display=swap');</style>
+  </defs>
+
+  <!-- ──────────────────────────────────────────────────────
+       MARK — Panícula abierta + horizonte pampeano
+       Estilo Northfield: arcos curvos en stroke, sin relleno.
+
+       6 arcos tipo cuarto de círculo (3 por ala), todos
+       convergiendo en la base del tallo (100,106).
+       El ala izquierda y derecha son simétricas y evocan
+       la panícula del mijo abierta de frente.
+
+       El detalle en asterisco (upper-right) = el grano/semilla.
+       La curva base = el horizonte de la pampa.
+  ─────────────────────────────────────────────────────── -->
+
+  <!-- Arcos compartidos: stroke verde pampa, round caps, no fill -->
+
+  <!-- ALA IZQUIERDA — 3 arcos quarter-circle -->
+  <!-- Outer: desde base hasta (48,54) — ángulo amplio -->
+  <path d="M 100,106 C 100.0,77.3 76.7,54.0 48,54"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Middle: hasta (63,69) -->
+  <path d="M 100,106 C 100.0,85.6 83.4,69.0 63,69"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Inner: hasta (78,84) — ángulo cerrado -->
+  <path d="M 100,106 C 100.0,93.8 90.2,84.0 78,84"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- ALA DERECHA — espejo -->
+  <!-- Outer: hasta (152,54) -->
+  <path d="M 100,106 C 100.0,77.3 123.3,54.0 152,54"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Middle: hasta (137,69) -->
+  <path d="M 100,106 C 100.0,85.6 116.6,69.0 137,69"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Inner: hasta (122,84) -->
+  <path d="M 100,106 C 100.0,93.8 109.8,84.0 122,84"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- HORIZONTE PAMPEANO — curva base suave -->
+  <path d="M 54,108 Q 100,118 146,108"
+    stroke="#005F02" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- DETALLE: grano/semilla — asterisco 6 brazos, upper-right -->
+  <path d="M 127.0,42.0 L 113.0,42.0
+           M 123.5,48.1 L 116.5,35.9
+           M 116.5,48.1 L 123.5,35.9"
+    stroke="#005F02" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- ──────────────────────────────────────────────────────
+       WORDMARK
+  ─────────────────────────────────────────────────────── -->
+  <text
+    x="100" y="140"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#005F02"
+    letter-spacing="3.5">SANDRO GRAND</text>
+
+  <text
+    x="100" y="158"
+    text-anchor="middle"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-size="6.5"
+    font-weight="500"
+    fill="#B3A86A"
+    letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+
+</svg>

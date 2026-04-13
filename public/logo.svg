@@ -1,0 +1,63 @@
+<svg viewBox="0 0 200 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand — Semilla de Mijo Perenne">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&amp;family=DM+Sans:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- ──────────────────────────────────────────────────────
+       MARK — Panícula de mijo perenne
+       5 semillas tipo cápsula irradiando hacia arriba
+       desde un nodo central, como las ramas de la panícula.
+       Centro más alto, externas más cortas — arco natural.
+  ─────────────────────────────────────────────────────── -->
+
+  <!-- Arm left outer  (−50°, 28px) -->
+  <rect x="-5" y="-28" width="10" height="28" rx="5"
+    fill="#005F02" transform="translate(100,80) rotate(-50)"/>
+
+  <!-- Arm left inner  (−24°, 37px) -->
+  <rect x="-5" y="-37" width="10" height="37" rx="5"
+    fill="#005F02" transform="translate(100,80) rotate(-24)"/>
+
+  <!-- Arm center      (0°,  44px) — eje principal, más alto -->
+  <rect x="-5" y="-44" width="10" height="44" rx="5"
+    fill="#005F02" transform="translate(100,80) rotate(0)"/>
+
+  <!-- Arm right inner (+24°, 37px) -->
+  <rect x="-5" y="-37" width="10" height="37" rx="5"
+    fill="#005F02" transform="translate(100,80) rotate(24)"/>
+
+  <!-- Arm right outer (+50°, 28px) -->
+  <rect x="-5" y="-28" width="10" height="28" rx="5"
+    fill="#005F02" transform="translate(100,80) rotate(50)"/>
+
+  <!-- Hub node — une brazos con tallo -->
+  <circle cx="100" cy="80" r="7" fill="#005F02"/>
+
+  <!-- Stem — tallo, nodo hasta base -->
+  <rect x="95" y="80" width="10" height="24" rx="5" fill="#005F02"/>
+
+  <!-- ──────────────────────────────────────────────────────
+       WORDMARK
+  ─────────────────────────────────────────────────────── -->
+
+  <text
+    x="100" y="130"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#005F02"
+    letter-spacing="3.5">SANDRO GRAND</text>
+
+  <text
+    x="100" y="148"
+    text-anchor="middle"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-size="6.5"
+    font-weight="500"
+    fill="#B3A86A"
+    letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+
+</svg>

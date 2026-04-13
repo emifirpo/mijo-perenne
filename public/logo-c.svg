@@ -1,0 +1,76 @@
+<svg viewBox="0 0 200 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand — Semilla de Mijo Perenne">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&amp;family=DM+Sans:wght@500&amp;display=swap');</style>
+    <!-- Clip rays to perfect circle -->
+    <clipPath id="panicle-clip">
+      <circle cx="100" cy="62" r="50"/>
+    </clipPath>
+  </defs>
+
+  <!-- ──────────────────────────────────────────────────────
+       MARK — Panícula circular
+       11 rayos/granos irradian desde el base del tallo
+       (punto de origen en el borde inferior del círculo)
+       hacia arriba, como una panícula abierta vista de frente.
+       Inspirado en el lenguaje visual de Evergreen Harbor.
+  ─────────────────────────────────────────────────────── -->
+
+  <!-- Circle fill base — el círculo entero es verde -->
+  <!-- Los gaps entre rayos son espacios vacíos sobre crema -->
+
+  <!-- Rayo 1  (−81°) -->
+  <polygon points="100,112 -119.02,91.30 -114.70,64.01"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 2  (−64.8°) -->
+  <polygon points="100,112 -104.55,31.01 -92.79,6.01"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 3  (−48.6°) -->
+  <polygon points="100,112 -73.83,-22.84 -55.56,-43.56"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 4  (−32.4°) -->
+  <polygon points="100,112 -29.31,-65.98 -5.99,-80.79"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 5  (−16.2°) -->
+  <polygon points="100,112 25.48,-94.99 52.01,-102.70"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 6  (0° — eje central) -->
+  <polygon points="100,112 86.19,-107.57 113.81,-107.57"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 7  (+16.2°) -->
+  <polygon points="100,112 147.99,-102.70 174.52,-94.99"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 8  (+32.4°) -->
+  <polygon points="100,112 205.99,-80.79 229.31,-65.98"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 9  (+48.6°) -->
+  <polygon points="100,112 255.56,-43.56 273.83,-22.84"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 10 (+64.8°) -->
+  <polygon points="100,112 292.79,6.01 304.55,31.01"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+  <!-- Rayo 11 (+81°) -->
+  <polygon points="100,112 314.70,64.01 319.02,91.30"
+    fill="#005F02" clip-path="url(#panicle-clip)"/>
+
+  <!-- ──────────────────────────────────────────────────────
+       WORDMARK
+  ─────────────────────────────────────────────────────── -->
+  <text
+    x="100" y="138"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#005F02"
+    letter-spacing="3.5">SANDRO GRAND</text>
+
+  <text
+    x="100" y="156"
+    text-anchor="middle"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-size="6.5"
+    font-weight="500"
+    fill="#B3A86A"
+    letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+
+</svg>

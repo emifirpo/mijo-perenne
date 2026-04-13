@@ -1,0 +1,55 @@
+<svg viewBox="0 0 200 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand — Semilla de Mijo Perenne">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&amp;family=DM+Sans:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- ──────────────────────────────────────────────────────
+       MARK — Tres semillas / granos de mijo
+       Cápsulas anchas y cortas (semillas como objeto físico),
+       no ramas finas. La diferencia con el logo A:
+       arquitectura de la planta vs. la semilla en la mano.
+  ─────────────────────────────────────────────────────── -->
+
+  <!-- Grano izquierdo (−40°, 24px, 13px ancho) -->
+  <rect x="-6.5" y="-24" width="13" height="24" rx="6.5"
+    fill="#005F02" transform="translate(100,82) rotate(-40)"/>
+
+  <!-- Grano central (0°, 34px — el más largo) -->
+  <rect x="-6.5" y="-34" width="13" height="34" rx="6.5"
+    fill="#005F02" transform="translate(100,82) rotate(0)"/>
+
+  <!-- Grano derecho (+40°, 24px, 13px ancho) -->
+  <rect x="-6.5" y="-24" width="13" height="24" rx="6.5"
+    fill="#005F02" transform="translate(100,82) rotate(40)"/>
+
+  <!-- Nodo central -->
+  <circle cx="100" cy="82" r="7.5" fill="#005F02"/>
+
+  <!-- Tallo -->
+  <rect x="95" y="82" width="10" height="22" rx="5" fill="#005F02"/>
+
+  <!-- ──────────────────────────────────────────────────────
+       WORDMARK
+  ─────────────────────────────────────────────────────── -->
+
+  <text
+    x="100" y="130"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#005F02"
+    letter-spacing="3.5">SANDRO GRAND</text>
+
+  <text
+    x="100" y="148"
+    text-anchor="middle"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-size="6.5"
+    font-weight="500"
+    fill="#B3A86A"
+    letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+
+</svg>

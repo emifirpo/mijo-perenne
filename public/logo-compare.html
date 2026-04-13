@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandro Grand — A vs B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0D1A0E; font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .header {
+      padding: 56px 72px 0;
+      display: flex; align-items: baseline; gap: 16px;
+    }
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 700;
+      color: rgba(240,232,196,0.32);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .header span {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(179,168,106,0.4);
+    }
+
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(179,168,106,0.08);
+      margin: 40px 72px 72px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #F5EDD8;
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 48px;
+    }
+    .card.dark { background: #005F02; }
+
+    .card-label {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .letter {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .letter-a { background: #005F02; color: #F0E8C4; }
+    .letter-b { background: #B3A86A; color: #0D1A0E; }
+    .letter-a-inv { background: #F0E8C4; color: #005F02; }
+    .letter-b-inv { background: #B3A86A; color: #0D1A0E; }
+
+    .card-title {
+      font-size: 0.56rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .card-title.light { color: rgba(0,95,2,0.4); }
+    .card-title.dark  { color: rgba(240,232,196,0.3); }
+
+    .concept {
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .concept.light { background: rgba(0,95,2,0.06); color: rgba(0,95,2,0.45); }
+    .concept.dark  { background: rgba(240,232,196,0.06); color: rgba(240,232,196,0.35); }
+
+    .logo-row {
+      display: flex; align-items: flex-end; gap: 56px; flex-wrap: wrap;
+    }
+    .logo-item { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .size { font-size: 0.48rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+    .size.light { color: rgba(0,95,2,0.25); }
+    .size.dark  { color: rgba(240,232,196,0.2); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Sandro Grand</h1>
+    <span>Comparativa de marca</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- A LIGHT -->
+    <div class="card">
+      <div class="card-label">
+        <div class="letter letter-a">A</div>
+        <div>
+          <p class="card-title light">La panícula</p>
+          <p class="concept light" style="margin-top:6px;">5 ramas · arquitectura de la planta</p>
+        </div>
+      </div>
+
+      <div class="logo-row">
+        <div class="logo-item">
+          <span class="size light">Logo completo</span>
+          <!-- LOGO A: 5-arm panicle -->
+          <svg viewBox="0 0 200 175" width="160" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(-50)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(-24)"/>
+            <rect x="-5" y="-44" width="10" height="44" rx="5" fill="#005F02" transform="translate(100,80) rotate(0)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(24)"/>
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(50)"/>
+            <circle cx="100" cy="80" r="7" fill="#005F02"/>
+            <rect x="95" y="80" width="10" height="24" rx="5" fill="#005F02"/>
+            <text x="100" y="130" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#005F02" letter-spacing="3.5">SANDRO GRAND</text>
+            <text x="100" y="148" text-anchor="middle" font-family="'DM Sans', Arial, sans-serif" font-size="6.5" font-weight="500" fill="#B3A86A" letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size light">Isologo</span>
+          <svg viewBox="72 30 56 82" width="88" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(-50)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(-24)"/>
+            <rect x="-5" y="-44" width="10" height="44" rx="5" fill="#005F02" transform="translate(100,80) rotate(0)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(24)"/>
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(50)"/>
+            <circle cx="100" cy="80" r="7" fill="#005F02"/>
+            <rect x="95" y="80" width="10" height="24" rx="5" fill="#005F02"/>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size light">32px</span>
+          <svg viewBox="72 30 56 82" width="32" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(-50)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(-24)"/>
+            <rect x="-5" y="-44" width="10" height="44" rx="5" fill="#005F02" transform="translate(100,80) rotate(0)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#005F02" transform="translate(100,80) rotate(24)"/>
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#005F02" transform="translate(100,80) rotate(50)"/>
+            <circle cx="100" cy="80" r="7" fill="#005F02"/>
+            <rect x="95" y="80" width="10" height="24" rx="5" fill="#005F02"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- B LIGHT -->
+    <div class="card">
+      <div class="card-label">
+        <div class="letter letter-b">B</div>
+        <div>
+          <p class="card-title light">Los granos</p>
+          <p class="concept light" style="margin-top:6px;">3 semillas · el producto en la mano</p>
+        </div>
+      </div>
+
+      <div class="logo-row">
+        <div class="logo-item">
+          <span class="size light">Logo completo</span>
+          <!-- LOGO B: 3-grain variant -->
+          <svg viewBox="0 0 200 175" width="160" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(-40)"/>
+            <rect x="-6.5" y="-34" width="13" height="34" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(0)"/>
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(40)"/>
+            <circle cx="100" cy="82" r="7.5" fill="#005F02"/>
+            <rect x="95" y="82" width="10" height="22" rx="5" fill="#005F02"/>
+            <text x="100" y="130" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#005F02" letter-spacing="3.5">SANDRO GRAND</text>
+            <text x="100" y="148" text-anchor="middle" font-family="'DM Sans', Arial, sans-serif" font-size="6.5" font-weight="500" fill="#B3A86A" letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size light">Isologo</span>
+          <svg viewBox="70 44 60 68" width="88" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(-40)"/>
+            <rect x="-6.5" y="-34" width="13" height="34" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(0)"/>
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(40)"/>
+            <circle cx="100" cy="82" r="7.5" fill="#005F02"/>
+            <rect x="95" y="82" width="10" height="22" rx="5" fill="#005F02"/>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size light">32px</span>
+          <svg viewBox="70 44 60 68" width="32" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(-40)"/>
+            <rect x="-6.5" y="-34" width="13" height="34" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(0)"/>
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#005F02" transform="translate(100,82) rotate(40)"/>
+            <circle cx="100" cy="82" r="7.5" fill="#005F02"/>
+            <rect x="95" y="82" width="10" height="22" rx="5" fill="#005F02"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- A DARK -->
+    <div class="card dark">
+      <div class="card-label">
+        <div class="letter letter-a-inv">A</div>
+        <p class="card-title dark">Versión oscura</p>
+      </div>
+      <div class="logo-row">
+        <div class="logo-item">
+          <span class="size dark">Logo completo</span>
+          <svg viewBox="0 0 200 175" width="160" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(-50)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(-24)"/>
+            <rect x="-5" y="-44" width="10" height="44" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(0)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(24)"/>
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(50)"/>
+            <circle cx="100" cy="80" r="7" fill="#F0E8C4"/>
+            <rect x="95" y="80" width="10" height="24" rx="5" fill="#F0E8C4"/>
+            <text x="100" y="130" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#F0E8C4" letter-spacing="3.5">SANDRO GRAND</text>
+            <text x="100" y="148" text-anchor="middle" font-family="'DM Sans', Arial, sans-serif" font-size="6.5" font-weight="500" fill="#B3A86A" letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size dark">Isologo</span>
+          <svg viewBox="72 30 56 82" width="72" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(-50)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(-24)"/>
+            <rect x="-5" y="-44" width="10" height="44" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(0)"/>
+            <rect x="-5" y="-37" width="10" height="37" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(24)"/>
+            <rect x="-5" y="-28" width="10" height="28" rx="5" fill="#F0E8C4" transform="translate(100,80) rotate(50)"/>
+            <circle cx="100" cy="80" r="7" fill="#F0E8C4"/>
+            <rect x="95" y="80" width="10" height="24" rx="5" fill="#F0E8C4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- B DARK -->
+    <div class="card dark">
+      <div class="card-label">
+        <div class="letter letter-b-inv">B</div>
+        <p class="card-title dark">Versión oscura</p>
+      </div>
+      <div class="logo-row">
+        <div class="logo-item">
+          <span class="size dark">Logo completo</span>
+          <svg viewBox="0 0 200 175" width="160" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(-40)"/>
+            <rect x="-6.5" y="-34" width="13" height="34" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(0)"/>
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(40)"/>
+            <circle cx="100" cy="82" r="7.5" fill="#F0E8C4"/>
+            <rect x="95" y="82" width="10" height="22" rx="5" fill="#F0E8C4"/>
+            <text x="100" y="130" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#F0E8C4" letter-spacing="3.5">SANDRO GRAND</text>
+            <text x="100" y="148" text-anchor="middle" font-family="'DM Sans', Arial, sans-serif" font-size="6.5" font-weight="500" fill="#B3A86A" letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <span class="size dark">Isologo</span>
+          <svg viewBox="70 44 60 68" width="72" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(-40)"/>
+            <rect x="-6.5" y="-34" width="13" height="34" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(0)"/>
+            <rect x="-6.5" y="-24" width="13" height="24" rx="6.5" fill="#F0E8C4" transform="translate(100,82) rotate(40)"/>
+            <circle cx="100" cy="82" r="7.5" fill="#F0E8C4"/>
+            <rect x="95" y="82" width="10" height="22" rx="5" fill="#F0E8C4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer note -->
+  <div style="padding: 0 72px 48px; display:flex; justify-content:space-between; align-items:center;">
+    <p style="font-size:0.5rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(179,168,106,0.25);">
+      Jacinto Arauz · La Pampa · Est. 2007
+    </p>
+    <p style="font-size:0.5rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(179,168,106,0.18);">
+      A = La panícula &nbsp;&nbsp;·&nbsp;&nbsp; B = Los granos
+    </p>
+  </div>
+
+</body>
+</html>
