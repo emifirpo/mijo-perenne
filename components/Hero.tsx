@@ -21,6 +21,46 @@ export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafRef = useRef<number | null>(null);
+  /* Refs para mutación directa de DOM — sin setState en scroll */
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  /* ── Scroll → fade + parallax ────────────────────────────────────
+     Ambos efectos se aplican directamente al DOM en el RAF callback.
+     Sin setState → sin re-renders de React → 0 jank en scroll.
+
+     Fade overlay : 0 → 1 entre scrollY = 0.15vh y 0.80vh
+     Parallax     : contenido sube 0.30× scrollY (efecto profundidad)
+     ─────────────────────────────────────────────────────────────── */
+  useEffect(() => {
+    const onScroll = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        const vh = window.innerHeight;
+        const sy = window.scrollY;
+
+        // — Fade overlay
+        const rawProgress = sy / vh;
+        const fadeProgress = (rawProgress - 0.15) / (0.80 - 0.15);
+        const opacity = Math.min(1, Math.max(0, fadeProgress));
+        if (overlayRef.current) overlayRef.current.style.opacity = String(opacity);
+
+        // — Parallax del contenido: sube suavemente mientras se oscurece
+        const parallaxPx = sy * 0.28;
+        if (contentRef.current) {
+          contentRef.current.style.transform = `translateY(-${parallaxPx}px)`;
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
 
   const advance = useCallback((from: number) => {
     const next = (from + 1) % VIDEOS.length;
@@ -119,13 +159,29 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Contenido principal — encima de todo ── */}
+      {/* ── Fade a negro — driven by scroll, mutado via ref ── */}
       <div
+        ref={overlayRef}
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 18,
+          backgroundColor: "#030804",
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ── Contenido principal — parallax via ref, encima del fade ── */}
+      <div
+        ref={contentRef}
         className="flex flex-col justify-end md:justify-center pb-16 md:pb-0"
         style={{
           position: "relative",
           zIndex: 10,
-          minHeight: "100dvh",
+          height: "100dvh",
+          willChange: "transform",
         }}
       >
         <div className="max-w-[1250px] mx-auto w-full px-6 md:px-10 md:text-center">

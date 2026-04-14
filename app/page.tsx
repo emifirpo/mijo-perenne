@@ -17,14 +17,22 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Problema />
-        <Marquee />
-        <Solucion />
-        <Stats />
-        <Ciclo />
-        <Sandro />
-        <Oferta />
-        <Respaldo />
+        {/*
+         * Wrapper sobre el hero sticky.
+         * position: relative + z-index: 1 → se pinta encima del hero (z-index: 0).
+         * background-color → tapa el negro del hero en secciones sin fondo propio
+         * (ej. Marquee, que es transparente y muestra lo que hay detrás).
+         */}
+        <div style={{ position: "relative", zIndex: 1, backgroundColor: "var(--color-base)" }}>
+          <Problema />
+          <Marquee />
+          <Solucion />
+          <Stats />
+          <Ciclo />
+          <Sandro />
+          <Oferta />
+          <Respaldo />
+        </div>
       </main>
       <Footer />
       <WAButton />

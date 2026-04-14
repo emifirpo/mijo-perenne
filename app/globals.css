@@ -210,11 +210,13 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(79,122,82,0.22);
 }
 
-/* ── Hero — video background fullscreen ── */
+/* ── Hero — video background fullscreen, sticky ── */
 .hero-section {
-  position: relative !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 0 !important;
   width: 100% !important;
-  min-height: 100dvh !important;
+  height: 100dvh !important;
   overflow: hidden !important;
   background-color: #050c06;
 }

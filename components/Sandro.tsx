@@ -19,27 +19,30 @@ const MILESTONES = [
     desc: "La semilla cosechada en diciembre. Desde ese año, sin comprar semilla externa. El ciclo cerró.",
     img: "/problema-02.jpg",
     pos: "center",
+    video: "/cosecha-2011.mp4",
   },
   {
     year: "2015",
     title: "100 hectáreas",
     desc: "El cultivo probado en sequías, heladas y baches estivales. La escala llegó sola, sin forzarla.",
-    img: "/sandro.jpg",
+    img: "/tractor.png",
     pos: "center",
+    video: "/campo-01.mp4",
   },
   {
     year: "2019",
     title: "Referente del sudoeste",
     desc: "Productores vecinos empezaron a llamar. El asesoramiento nació de la demanda, no de un plan.",
-    img: "/problema-03.jpg",
+    img: "/comunidad.png",
     pos: "center 20%",
   },
   {
     year: "2023",
     title: "INTA · FAO",
     desc: "El Panicum coloratum reconocido por INTA Guatraché y FAO como alternativa forrajera clave en la región pampeana.",
-    img: "/problema-02.jpg",
-    pos: "center",
+    img: "/inta-jornada-2023.jpg",
+    pos: "center top",
+    videos: ["/inta-jornada-v1.mp4", "/inta-jornada-v2.mp4"],
   },
   {
     year: "Hoy",
@@ -47,12 +50,35 @@ const MILESTONES = [
     desc: "200 hectáreas en producción permanente. Produce, cosecha y vende semilla propia desde el campo donde todo empezó.",
     img: "/problema-01.jpg",
     pos: "center top",
+    video: "/hereford-hoy.mp4",
   },
 ];
 
 const PILL_H  = 30;
 const CARD_PT = 20;
 const LINE_TOP = CARD_PT + PILL_H / 2;
+
+/* Reproduce una lista de videos en secuencia (sin loop, avanza al siguiente) */
+function SequentialVideo({ videos }: { videos: string[] }) {
+  const [idx, setIdx] = useState(0);
+  return (
+    <video
+      key={idx}
+      src={videos[idx]}
+      autoPlay
+      muted
+      playsInline
+      onEnded={() => setIdx((prev) => (prev + 1) % videos.length)}
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
+    />
+  );
+}
 
 export default function Sandro() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -314,7 +340,7 @@ export default function Sandro() {
                   {m.desc}
                 </p>
 
-                {/* Imagen */}
+                {/* Imagen / Video */}
                 <div
                   style={{
                     flex: 1,
@@ -325,14 +351,33 @@ export default function Sandro() {
                     background: "var(--color-surface-3)",
                   }}
                 >
-                  <Image
-                    src={m.img}
-                    alt={m.title}
-                    fill
-                    sizes={isMobile ? "(max-width: 767px) 80vw, 360px" : "360px"}
-                    className="object-cover"
-                    style={{ objectPosition: m.pos }}
-                  />
+                  {"videos" in m && m.videos ? (
+                    <SequentialVideo videos={m.videos} />
+                  ) : m.video ? (
+                    <video
+                      src={m.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      src={m.img}
+                      alt={m.title}
+                      fill
+                      sizes="(max-width: 767px) 90vw, (max-width: 1024px) 50vw, 600px"
+                      className="object-cover"
+                      style={{ objectPosition: m.pos }}
+                    />
+                  )}
                 </div>
               </motion.div>
             ))}

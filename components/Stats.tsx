@@ -74,9 +74,9 @@ export default function Stats() {
   return (
     <section
       id="numeros"
-      className="relative py-24 md:py-36"
+      className="relative py-24"
       data-navdark="true"
-      style={{ backgroundColor: "var(--color-dark)", overflow: "hidden" }}
+      style={{ backgroundColor: "var(--color-dark)", overflow: "hidden", minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center" }}
     >
       <div className="absolute inset-0 dot-grid-dark opacity-50 pointer-events-none" aria-hidden="true" />
 
