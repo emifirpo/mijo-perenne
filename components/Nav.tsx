@@ -12,28 +12,43 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [onDark, setOnDark]     = useState(true); // hero is dark on mount
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight - 80);
+    const navEl = document.querySelector("nav") as HTMLElement | null;
+
+    const update = () => {
+      setScrolled(window.scrollY > 40);
+
+      // elementFromPoint returns the topmost element in z-order — that's the nav
+      // itself (z-50). We need to punch through it to hit the section below.
+      // Temporarily removing pointer-events makes the nav invisible to the hit test.
+      if (navEl) navEl.style.pointerEvents = "none";
+      const el = document.elementFromPoint(window.innerWidth / 2, 36);
+      if (navEl) navEl.style.pointerEvents = "";
+
+      setOnDark(!!el?.closest("[data-navdark]"));
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    update(); // run once on mount to set correct initial state
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
-  // Over dark hero → white text. Over light content → dark text.
-  const logoColor   = scrolled ? "#182A1A" : "#F0EBE1";
-  const linkColor   = scrolled ? "rgba(24,42,26,0.65)" : "rgba(240,235,225,0.75)";
-  const hoverColor  = scrolled ? "#182A1A" : "#F0EBE1";
-  const pillBg      = scrolled ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.07)";
-  const pillBorder  = scrolled ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.12)";
-  const ctaBg       = scrolled ? "#182A1A" : "var(--color-dorado)";
-  const ctaDotBg    = scrolled ? "var(--color-dorado)" : "#182A1A";
-  const ctaDotPing  = scrolled ? "#182A1A" : "var(--color-dorado)";
-  const burgerBg    = scrolled ? "rgba(0,0,0,0.07)" : "rgba(255,255,255,0.1)";
-  const burgerBdr   = scrolled ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.15)";
-  const burgerLine  = scrolled ? "#182A1A" : "#F0EBE1";
+  // onDark = true  → nav is over a dark section → show light logo/text
+  // onDark = false → nav is over a light section → show dark logo/text
+  const logoColor   = menuOpen ? "#182A1A" : (onDark ? "#F0EBE1" : "#182A1A");
+  const linkColor   = onDark ? "rgba(240,235,225,0.75)" : "rgba(24,42,26,0.65)";
+  const hoverColor  = onDark ? "#F0EBE1" : "#182A1A";
+  const pillBg      = scrolled ? (onDark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.92)") : "rgba(255,255,255,0.07)";
+  const pillBorder  = scrolled ? (onDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)") : "rgba(255,255,255,0.12)";
+  const ctaBg       = onDark ? "var(--color-dorado)" : "#182A1A";
+  const ctaDotBg    = onDark ? "#182A1A" : "var(--color-dorado)";
+  const ctaDotPing  = onDark ? "var(--color-dorado)" : "#182A1A";
+  const burgerBg    = menuOpen ? "rgba(0,0,0,0.07)" : (onDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.07)");
+  const burgerBdr   = menuOpen ? "rgba(0,0,0,0.12)" : (onDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)");
+  const burgerLine  = menuOpen ? "#182A1A" : (onDark ? "#F0EBE1" : "#182A1A");
 
   return (
     <>
@@ -41,9 +56,8 @@ export default function Nav() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8"
         style={{ height: "72px" }}
       >
-        {/* Logo */}
+        {/* Logo — color adaptativo según sección clara/oscura */}
         <a href="#inicio" className="flex items-center gap-2.5 z-10" aria-label="Inicio">
-          {/* Mark — panícula, color-adaptive */}
           <LogoMark
             aria-hidden="true"
             style={{
@@ -58,7 +72,7 @@ export default function Nav() {
             className="font-sans font-semibold leading-none"
             style={{ fontSize: "1.05rem", color: logoColor, letterSpacing: "-0.02em", transition: "color 0.4s" }}
           >
-            Sandro Grand
+            Mijo Grand
           </span>
         </a>
 
@@ -171,7 +185,7 @@ export default function Nav() {
               </motion.a>
             ))}
             <p className="mt-auto mb-8 font-sans" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
-              -38.12° S · -63.56° O · Jacinto Arauz, La Pampa
+              Jacinto Arauz · La Pampa · Est. 2007
             </p>
           </motion.div>
         )}

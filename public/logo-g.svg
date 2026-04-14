@@ -1,0 +1,30 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand">
+
+  <!-- Fondo: cuadrado redondeado, verde pampa -->
+  <rect x="0" y="0" width="100" height="100" rx="20" fill="#005F02"/>
+
+  <!-- ── HOJA IZQUIERDA (~42° del eje vertical) -->
+  <path d="M 50,67
+           C 32,63 8,46 8,29
+           C 21,31 44,63 50,67 Z"
+        fill="white"/>
+
+  <!-- ── HOJA DERECHA (espejo) -->
+  <path d="M 50,67
+           C 68,63 92,46 92,29
+           C 79,31 56,63 50,67 Z"
+        fill="white"/>
+
+  <!-- ── HOJA CENTRAL (más alta, eje vertical) -->
+  <path d="M 50,67
+           C 41,50 40,24 50,14
+           C 60,24 59,50 50,67 Z"
+        fill="white"/>
+
+  <!-- ── ARCO BASE — raíz / suelo -->
+  <path d="M 31,77 Q 50,89 69,77"
+        stroke="white" stroke-width="2.2"
+        stroke-dasharray="4.5 3.5"
+        fill="none" stroke-linecap="round"/>
+
+</svg>

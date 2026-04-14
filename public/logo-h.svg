@@ -1,0 +1,40 @@
+<svg viewBox="0 0 200 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand">
+
+  <!-- ═══════════════════════════════════════════════════════
+       Conversión vectorial fiel de la referencia.
+       ELEMENTO IZQUIERDO: silueta en "M" — dos picos orgánicos
+       que sugieren hojas/pastizal/horizonte pampeano.
+       ELEMENTO DERECHO: 3 bandas horizontales arqueadas,
+       puntas afinadas, arco suave — surcos del campo.
+  ════════════════════════════════════════════════════════ -->
+
+  <!-- ── IZQUIERDA: M / dos picos ── -->
+  <path d="M 5,104
+           C 5,58  8,24  22,10
+           C 32,24  38,50  46,57
+           C 54,50  62,24  72,16
+           C 82,30  85,62  85,104
+           Z"
+        fill="#005F02"/>
+
+  <!-- ── DERECHA: 3 bandas horizontales arqueadas ── -->
+
+  <!-- Banda 1 — superior -->
+  <path d="M 95,32
+           Q 144,19  193,28
+           Q 144,40  95,32 Z"
+        fill="#005F02"/>
+
+  <!-- Banda 2 — media -->
+  <path d="M 95,60
+           Q 144,47  193,56
+           Q 144,68  95,60 Z"
+        fill="#005F02"/>
+
+  <!-- Banda 3 — inferior -->
+  <path d="M 95,88
+           Q 144,75  193,84
+           Q 144,96  95,88 Z"
+        fill="#005F02"/>
+
+</svg>

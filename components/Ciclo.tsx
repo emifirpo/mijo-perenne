@@ -1,13 +1,15 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const ScrollyVideo = dynamic(
   () => import("scrolly-video/dist/ScrollyVideo.cjs.jsx"),
   { ssr: false }
 );
+
+const CampoWireframe = dynamic(() => import("./CampoWireframe"), { ssr: false });
 
 const PASOS = [
   {
@@ -146,6 +148,36 @@ export default function Ciclo() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Inyectar CSS con !important para neutralizar el transform inline de ScrollyVideo.
+  // La librería setea top:50%;left:50%;transform:translate(-50%,-50%) como inline
+  // style en cada frame. Un stylesheet !important gana sobre inline styles sin
+  // !important — solución permanente sin mutar el DOM en cada frame.
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.id = "scrolly-fix";
+    style.textContent = `
+      [data-scrolly-container] video,
+      [data-scrolly-container] canvas {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        transform: none !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+      }
+    `;
+    if (!document.getElementById("scrolly-fix")) {
+      document.head.appendChild(style);
+    }
+    return () => document.getElementById("scrolly-fix")?.remove();
+  }, []);
+
   // ── Timeline refs ───────────────────────────────────────────────────────────
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -154,12 +186,17 @@ export default function Ciclo() {
   });
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+  // Progreso como número para pasarle al campo 3D
+  const [timelineProgress, setTimelineProgress] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", setTimelineProgress);
+
   return (
     <>
       {/* ── SECCIÓN 1: ScrollyVideo con scroll manual ── */}
       <div
         id="ciclo"
         ref={cicloRef}
+        data-navdark="true"
         style={{ position: "relative", height: "280vh" }}
       >
         <div style={{ position: "sticky", top: 0, height: "100dvh", overflow: "hidden", backgroundColor: "#030804" }}>
@@ -203,7 +240,8 @@ export default function Ciclo() {
       {/* ── SECCIÓN 2: Timeline animado ───────────────────────────── */}
       <section
         className="relative pb-10 md:pb-14"
-        style={{ backgroundColor: "#1C0F07" }}
+        data-navdark="true"
+        style={{ backgroundColor: "#1C0F07", overflow: "visible" }}
       >
         <div className="absolute inset-0 dot-grid-dark opacity-40 pointer-events-none" aria-hidden="true" />
 
@@ -211,31 +249,73 @@ export default function Ciclo() {
           <div
             style={{ borderTop: "1px solid var(--color-dark-border)", paddingTop: "2.5rem" }}
           >
-            {/* Contenedor del timeline con la línea animada */}
-            <div ref={timelineRef} className="relative max-w-3xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-              {/* Línea vertical gold — se dibuja con el scroll */}
-              <div
-                className="absolute top-0 bottom-0"
-                style={{ left: "25px", width: "2px", background: "rgba(179,168,106,0.12)" }}
-                aria-hidden="true"
-              >
-                <motion.div
-                  className="absolute top-0 left-0 w-full"
-                  style={{
-                    height: "100%",
-                    background: "var(--color-dorado)",
-                    scaleY: lineScaleY,
-                    transformOrigin: "top",
-                    opacity: 0.7,
-                  }}
-                />
+              {/* Columna izquierda: timeline animado */}
+              <div ref={timelineRef} className="relative">
+                {/* Línea vertical gold — se dibuja con el scroll */}
+                <div
+                  className="absolute top-0 bottom-0"
+                  style={{ left: "25px", width: "2px", background: "rgba(179,168,106,0.12)" }}
+                  aria-hidden="true"
+                >
+                  <motion.div
+                    className="absolute top-0 left-0 w-full"
+                    style={{
+                      height: "100%",
+                      background: "var(--color-dorado)",
+                      scaleY: lineScaleY,
+                      transformOrigin: "top",
+                      opacity: 0.7,
+                    }}
+                  />
+                </div>
+
+                {/* Pasos */}
+                {PASOS.map((paso, i) => (
+                  <PasoItem key={i} paso={paso} index={i} />
+                ))}
               </div>
 
-              {/* Pasos */}
-              {PASOS.map((paso, i) => (
-                <PasoItem key={i} paso={paso} index={i} />
-              ))}
+              {/* Columna derecha: campo 3D — sticky, desborda por top/bottom/right */}
+              <div
+                className="hidden lg:block"
+                style={{ position: "relative", overflow: "visible" }}
+              >
+                <div
+                  style={{
+                    position: "sticky",
+                    top: 0,
+                    // Desborda la sección: sube, baja y sale por la derecha
+                    marginTop: "-6rem",
+                    marginRight: "-14vw",
+                    height: "100dvh",
+                    overflow: "visible",
+                  }}
+                >
+                  <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                    <CampoWireframe progress={timelineProgress} />
+                    {/* Leyenda */}
+                    <div
+                      className="absolute flex items-center gap-5 font-sans"
+                      style={{
+                        bottom: "6%",
+                        left: "8%",
+                        fontSize: "0.58rem",
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: "rgba(179,168,106,0.4)",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      <span>En pie</span>
+                      <span style={{ width: "28px", height: "1px", background: "rgba(179,168,106,0.28)", display: "inline-block", verticalAlign: "middle" }} />
+                      <span>Cosechado</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

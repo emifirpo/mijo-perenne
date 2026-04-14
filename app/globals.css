@@ -75,7 +75,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  /* max-width: 100% como segunda capa de protección contra overflow horizontal */
   max-width: 100%;
   background-color: var(--color-base);
   color: var(--color-text-primary);
@@ -84,7 +83,14 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* NO overflow-x: hidden aquí — genera BFC que desplaza fixed elements */
+  /* NO overflow-x: hidden — crea BFC y rompe position:fixed */
+  /* overflow-x: clip NO crea scroll container → sticky/fixed siguen funcionando */
+  overflow-x: clip;
+}
+
+/* Guardia global: clip en main no rompe sticky ni fixed externos (Nav, WAButton) */
+main {
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -204,6 +210,31 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(79,122,82,0.22);
 }
 
+/* ── Hero — video background fullscreen ── */
+.hero-section {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 100dvh !important;
+  overflow: hidden !important;
+  background-color: #050c06;
+}
+.hero-bg-video {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+}
+
 /* ── ScrollyVideo — forzar fill del container ── */
 [data-scrolly-container] {
   width: 100% !important;
@@ -217,7 +248,11 @@ h1, h2, h3, h4 {
   height: 100% !important;
   object-fit: cover !important;
   position: absolute !important;
-  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  transform: none !important;
 }
 
 /* ── Image frame border — Hyper Farms treatment ── */

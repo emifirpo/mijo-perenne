@@ -1,0 +1,92 @@
+<svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sandro Grand — Semilla de Mijo Perenne">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&amp;family=DM+Sans:wght@500&amp;display=swap');</style>
+  </defs>
+
+  <!-- ──────────────────────────────────────────────────────
+       MARK — Logo F: Caña botánica
+       Ilustración de una caña de mijo perenne (Panicum coloratum)
+       vista de perfil: tallo levemente curvado, dos hojas
+       lanceoladas emergiendo de los nudos, y una panícula
+       abierta con 5 ramas portando semillas elipsoidales.
+
+       Lenguaje: stroke para tallo y ramas de la panícula
+       (orgánico, vivo), fill para hojas y semillas (masa).
+       Los nudos del tallo (círculos) son detalle botánico real.
+  ─────────────────────────────────────────────────────── -->
+
+  <!-- ── PANÍCULA ── -->
+  <!-- Rama central — hacia arriba, eje principal -->
+  <path d="M 100,60 C 100,46 100,32 100,19"
+        stroke="#005F02" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+  <!-- Semilla central -->
+  <ellipse cx="100" cy="13" rx="4.5" ry="7.2" fill="#005F02"/>
+
+  <!-- Rama izquierda 1 (−28°) -->
+  <path d="M 98,65 C 91,54 84,42 76,30"
+        stroke="#005F02" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+  <ellipse cx="73" cy="25" rx="4" ry="6.5" fill="#005F02"
+           transform="rotate(-30 73 25)"/>
+
+  <!-- Rama derecha 1 (+28°) -->
+  <path d="M 102,65 C 109,54 116,43 124,30"
+        stroke="#005F02" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+  <ellipse cx="127" cy="25" rx="4" ry="6.5" fill="#005F02"
+           transform="rotate(30 127 25)"/>
+
+  <!-- Rama izquierda 2 (−50°, más corta) -->
+  <path d="M 96,72 C 87,63 76,56 65,51"
+        stroke="#005F02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <ellipse cx="61" cy="48" rx="3.5" ry="5.8" fill="#005F02"
+           transform="rotate(-52 61 48)"/>
+
+  <!-- Rama derecha 2 (+50°, más corta) -->
+  <path d="M 104,72 C 113,63 124,56 135,51"
+        stroke="#005F02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <ellipse cx="139" cy="48" rx="3.5" ry="5.8" fill="#005F02"
+           transform="rotate(52 139 48)"/>
+
+  <!-- Nodo base de la panícula — une tallo con ramas -->
+  <circle cx="100" cy="62" r="4.2" fill="#005F02"/>
+
+  <!-- ── TALLO ── levemente curvado, orgánico -->
+  <path d="M 100,120 C 101,103 100,84 100,62"
+        stroke="#005F02" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- ── NUDOS del tallo — detalle botánico real de las gramíneas -->
+  <circle cx="100" cy="78" r="3.2" fill="#005F02"/>
+  <circle cx="100" cy="98" r="3.6" fill="#005F02"/>
+
+  <!-- ── HOJA DERECHA — nodo inferior (y≈98), baja y hacia la derecha -->
+  <!-- Hoja lanceolada: ancha en la vaina, estrechando hacia la punta -->
+  <path d="M 101,98
+           C 116,91 133,88 148,102
+           C 134,92 117,94 101,104 Z"
+        fill="#005F02"/>
+
+  <!-- ── HOJA IZQUIERDA — nodo superior (y≈78), sube y hacia la izquierda -->
+  <path d="M 99,78
+           C 86,71 72,69 58,77
+           C 70,71 84,74 99,84 Z"
+        fill="#005F02"/>
+
+  <!-- ── WORDMARK ── -->
+  <text
+    x="100" y="142"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#005F02"
+    letter-spacing="3.5">SANDRO GRAND</text>
+
+  <text
+    x="100" y="160"
+    text-anchor="middle"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-size="6.5"
+    font-weight="500"
+    fill="#B3A86A"
+    letter-spacing="1.9">SEMILLA DE MIJO PERENNE</text>
+
+</svg>

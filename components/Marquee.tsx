@@ -17,7 +17,8 @@ export default function Marquee() {
   });
 
   // Texto se mueve hacia la izquierda al scrollear — movimiento natural atado al gesto
-  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-18%"]);
+  // Arranca en 0% (nunca empuja contenido a la derecha del viewport)
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   return (
     <section

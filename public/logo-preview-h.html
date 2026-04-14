@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo — Vector fiel · Sandro Grand</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F0EBE0; font-family: system-ui, sans-serif; }
+  .row { display:flex; align-items:center; justify-content:center; gap:60px; padding:60px 48px; flex-wrap:wrap; }
+  .on-cream { background: #F0EBE0; }
+  .on-white { background: #fff; border-top: 1px solid rgba(0,95,2,0.07); }
+  .on-dark  { background: #005F02; border-top: 1px solid rgba(255,255,255,0.06); }
+  .item { display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .lbl { font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(0,95,2,.38); font-weight:500; }
+  .on-dark .lbl { color:rgba(240,232,196,.38); }
+</style>
+</head>
+<body>
+
+<!-- GRANDE -->
+<div class="row on-cream">
+  <div class="item">
+    <span class="lbl">Vector — crema</span>
+    <img src="/logo-h.svg" width="340">
+  </div>
+</div>
+
+<!-- BLANCO -->
+<div class="row on-white">
+  <div class="item">
+    <span class="lbl">Sobre blanco</span>
+    <img src="/logo-h.svg" width="260">
+  </div>
+</div>
+
+<!-- OSCURO -->
+<div class="row on-dark">
+  <div class="item">
+    <span class="lbl">Crema sobre verde</span>
+    <svg viewBox="0 0 200 112" width="260" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5,104 C 5,58 8,24 22,10 C 32,24 38,50 46,57 C 54,50 62,24 72,16 C 82,30 85,62 85,104 Z" fill="#F0E8C4"/>
+      <path d="M 95,32 Q 144,19 193,28 Q 144,40 95,32 Z" fill="#F0E8C4"/>
+      <path d="M 95,60 Q 144,47 193,56 Q 144,68 95,60 Z" fill="#F0E8C4"/>
+      <path d="M 95,88 Q 144,75 193,84 Q 144,96 95,88 Z" fill="#F0E8C4"/>
+    </svg>
+  </div>
+  <div class="item">
+    <span class="lbl">Dorado sobre verde</span>
+    <svg viewBox="0 0 200 112" width="260" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5,104 C 5,58 8,24 22,10 C 32,24 38,50 46,57 C 54,50 62,24 72,16 C 82,30 85,62 85,104 Z" fill="#B3A86A"/>
+      <path d="M 95,32 Q 144,19 193,28 Q 144,40 95,32 Z" fill="#B3A86A"/>
+      <path d="M 95,60 Q 144,47 193,56 Q 144,68 95,60 Z" fill="#B3A86A"/>
+      <path d="M 95,88 Q 144,75 193,84 Q 144,96 95,88 Z" fill="#B3A86A"/>
+    </svg>
+  </div>
+</div>
+
+<!-- TAMAÑOS -->
+<div class="row on-cream" style="border-top:1px solid rgba(0,95,2,0.08)">
+  <div class="item"><span class="lbl">32px</span><img src="/logo-h.svg" width="32"></div>
+  <div class="item"><span class="lbl">64px</span><img src="/logo-h.svg" width="64"></div>
+  <div class="item"><span class="lbl">120px</span><img src="/logo-h.svg" width="120"></div>
+  <div class="item"><span class="lbl">240px</span><img src="/logo-h.svg" width="240"></div>
+</div>
+
+</body>
+</html>

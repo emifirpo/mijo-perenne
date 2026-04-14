@@ -8,7 +8,6 @@ import Ciclo from "@/components/Ciclo";
 import Sandro from "@/components/Sandro";
 import Oferta from "@/components/Oferta";
 import Respaldo from "@/components/Respaldo";
-import Contacto from "@/components/Contacto";
 import Footer from "@/components/Footer";
 import WAButton from "@/components/WAButton";
 
@@ -26,7 +25,6 @@ export default function Home() {
         <Sandro />
         <Oferta />
         <Respaldo />
-        <Contacto />
       </main>
       <Footer />
       <WAButton />

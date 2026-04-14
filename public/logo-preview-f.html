@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo F — Caña botánica · Sandro Grand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F5EDD8;
+    color: #005F02;
+  }
+
+  .label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  /* ─── HERO ROW ─── */
+  .row-hero {
+    display: flex;
+    align-items: stretch;
+    min-height: 380px;
+  }
+
+  .panel-light {
+    flex: 1;
+    background: #F5EDD8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+  }
+  .panel-dark {
+    flex: 1;
+    background: #005F02;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+  }
+  .panel-dark .label { color: #F5EDD8; opacity: 0.45; }
+
+  .logo-lg { width: 160px; height: auto; }
+
+  /* dark variant — invert fill to crema */
+  .logo-dark-variant {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(12%) saturate(428%) hue-rotate(12deg) brightness(103%) contrast(93%);
+  }
+
+  /* ─── COMPARACIÓN DE TAMAÑOS ─── */
+  .row-sizes {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 50px 40px;
+    border-top: 1px solid rgba(0,95,2,0.08);
+    flex-wrap: wrap;
+  }
+
+  .size-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* ─── COMPARATIVA CON VERSIONES ANTERIORES ─── */
+  .row-compare {
+    background: #F0E8CC;
+    padding: 50px 40px;
+    border-top: 1px solid rgba(0,95,2,0.08);
+  }
+  .compare-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #005F02;
+    margin-bottom: 40px;
+  }
+  .compare-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .compare-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .compare-item img { width: 90px; height: auto; }
+  .compare-item span {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(0,95,2,0.5);
+    font-weight: 500;
+  }
+  .compare-item.highlight span { color: #B3A86A; font-weight: 700; }
+  .compare-item.highlight img {
+    width: 110px;
+    filter: drop-shadow(0 4px 18px rgba(0,95,2,0.18));
+  }
+
+  /* ─── SOBRE FOTO ─── */
+  .row-photo {
+    min-height: 260px;
+    background: linear-gradient(135deg, #1a3320 0%, #005F02 40%, #096B04 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    border-top: 1px solid rgba(0,95,2,0.08);
+  }
+
+  .pill {
+    background: rgba(240,235,225,0.12);
+    border: 1px solid rgba(179,168,106,0.3);
+    border-radius: 999px;
+    padding: 18px 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .pill img { width: 38px; filter: brightness(0) saturate(100%) invert(94%) sepia(12%) saturate(428%) hue-rotate(12deg); }
+  .pill-text { color: #F0EBE1; }
+  .pill-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; letter-spacing: 0.08em; }
+  .pill-text p { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #B3A86A; margin-top: 2px; }
+
+  /* ─── FOOTER NOTA ─── */
+  .note {
+    text-align: center;
+    padding: 32px 40px;
+    border-top: 1px solid rgba(0,95,2,0.08);
+    font-size: 11px;
+    color: rgba(0,95,2,0.45);
+    letter-spacing: 0.06em;
+  }
+  .note strong { color: #005F02; }
+</style>
+</head>
+<body>
+
+<!-- HERO: CLARO / OSCURO -->
+<div class="row-hero">
+  <div class="panel-light">
+    <p class="label">Sobre fondo crema</p>
+    <img src="/logo-f.svg" alt="Logo F" class="logo-lg">
+  </div>
+  <div class="panel-dark">
+    <p class="label">Sobre verde pampa</p>
+    <img src="/logo-f.svg" alt="Logo F dark" class="logo-lg logo-dark-variant">
+  </div>
+</div>
+
+<!-- TAMAÑOS -->
+<div class="row-sizes">
+  <div class="size-item">
+    <p class="label">Nav · 40px</p>
+    <img src="/logo-f.svg" alt="" style="width:40px;">
+  </div>
+  <div class="size-item">
+    <p class="label">Uso normal · 80px</p>
+    <img src="/logo-f.svg" alt="" style="width:80px;">
+  </div>
+  <div class="size-item">
+    <p class="label">Hero / impresión · 160px</p>
+    <img src="/logo-f.svg" alt="" style="width:160px;">
+  </div>
+  <div class="size-item">
+    <p class="label">Solo mark · 48px</p>
+    <!-- mark recortado: solo la ilustración, sin wordmark -->
+    <svg viewBox="44 6 112 122" width="48" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 100,60 C 100,46 100,32 100,19" stroke="#005F02" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+      <ellipse cx="100" cy="13" rx="4.5" ry="7.2" fill="#005F02"/>
+      <path d="M 98,65 C 91,54 84,42 76,30" stroke="#005F02" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+      <ellipse cx="73" cy="25" rx="4" ry="6.5" fill="#005F02" transform="rotate(-30 73 25)"/>
+      <path d="M 102,65 C 109,54 116,43 124,30" stroke="#005F02" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+      <ellipse cx="127" cy="25" rx="4" ry="6.5" fill="#005F02" transform="rotate(30 127 25)"/>
+      <path d="M 96,72 C 87,63 76,56 65,51" stroke="#005F02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="61" cy="48" rx="3.5" ry="5.8" fill="#005F02" transform="rotate(-52 61 48)"/>
+      <path d="M 104,72 C 113,63 124,56 135,51" stroke="#005F02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="139" cy="48" rx="3.5" ry="5.8" fill="#005F02" transform="rotate(52 139 48)"/>
+      <circle cx="100" cy="62" r="4.2" fill="#005F02"/>
+      <path d="M 100,120 C 101,103 100,84 100,62" stroke="#005F02" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle cx="100" cy="78" r="3.2" fill="#005F02"/>
+      <circle cx="100" cy="98" r="3.6" fill="#005F02"/>
+      <path d="M 101,98 C 116,91 133,88 148,102 C 134,92 117,94 101,104 Z" fill="#005F02"/>
+      <path d="M 99,78 C 86,71 72,69 58,77 C 70,71 84,74 99,84 Z" fill="#005F02"/>
+    </svg>
+  </div>
+</div>
+
+<!-- COMPARATIVA -->
+<div class="row-compare">
+  <p class="compare-title">PROPUESTA F — Caña Botánica</p>
+  <div class="compare-grid">
+    <div class="compare-item">
+      <img src="/logo.svg" alt="Logo A">
+      <span>A — Panícula geométrica</span>
+    </div>
+    <div class="compare-item">
+      <img src="/logo-d.svg" alt="Logo D">
+      <span>D — Rayos + horizonte</span>
+    </div>
+    <div class="compare-item">
+      <img src="/logo-e.svg" alt="Logo E">
+      <span>E — Arcos + asterisco</span>
+    </div>
+    <div class="compare-item highlight">
+      <img src="/logo-f.svg" alt="Logo F">
+      <span>F — Caña orgánica ★</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO EN NAVBAR / HEADER -->
+<div class="row-photo">
+  <div class="pill">
+    <img src="/logo-f.svg" alt="">
+    <div class="pill-text">
+      <h3>Sandro Grand</h3>
+      <p>Semilla de Mijo Perenne</p>
+    </div>
+  </div>
+</div>
+
+<p class="note">
+  <strong>Logo F</strong> · Tallo curvado + hojas lanceoladas + panícula con semillas ·
+  Stroke orgánico para tallo y ramas · Fill para hojas y granos ·
+  Nudos botánicos en el tallo
+</p>
+
+</body>
+</html>

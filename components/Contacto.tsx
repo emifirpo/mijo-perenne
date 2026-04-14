@@ -71,6 +71,7 @@ export default function Contacto() {
     <section
       id="contacto"
       className="py-10 md:py-14"
+      data-navdark="true"
       style={{ backgroundColor: "var(--color-dark)", position: "relative", overflow: "hidden" }}
     >
       {/* Logo D — watermark fondo izquierdo, opacado */}
@@ -176,7 +177,7 @@ export default function Contacto() {
                   Sandro te responde en 24-48hs.<br />También podés escribirle directo.
                 </p>
                 <a
-                  href="https://wa.me/5492954000000"
+                  href="https://wa.me/5492916481785"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-sans font-medium"
@@ -268,7 +269,7 @@ export default function Contacto() {
                 </div>
 
                 <a
-                  href="https://wa.me/5492954000000?text=Hola%20Sandro%2C%20me%20interesa%20la%20semilla%20de%20mijo%20perenne"
+                  href="https://wa.me/5492916481785?text=Hola%20Sandro%2C%20me%20interesa%20la%20semilla%20de%20mijo%20perenne"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2.5 font-sans font-medium"

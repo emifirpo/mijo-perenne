@@ -12,7 +12,7 @@ export default function Respaldo() {
   return (
     <section
       id="respaldo"
-      className="py-10 md:py-14"
+      className="py-24 md:py-36"
       style={{ backgroundColor: "var(--color-base)" }}
     >
       <div className="max-w-[1250px] mx-auto px-5 md:px-10">

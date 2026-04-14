@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo G — Ícono · Sandro Grand</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5EDD8; display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+  section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .on-cream  { background: #F5EDD8; }
+  .on-white  { background: #ffffff; }
+  .on-dark   { background: #005F02; }
+  .on-tan    { background: #B3A86A; }
+  .on-black  { background: #111;    }
+
+  .item { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+  .label {
+    font-family: system-ui, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .on-dark .label, .on-black .label { color: #fff; }
+
+  /* logo invertido para fondos oscuros que no sean el verde del logo */
+  .invert { filter: brightness(0) invert(1); }
+  /* logo para fondo dorado: verde sobre dorado */
+  .on-green { filter: brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(1000%) hue-rotate(100deg) brightness(60%); }
+
+  hr { width:100%; border:none; border-top: 1px solid rgba(0,95,2,0.08); }
+</style>
+</head>
+<body>
+
+<!-- SOBRE CREMA -->
+<section class="on-cream">
+  <div class="item">
+    <p class="label">Sobre crema</p>
+    <img src="/logo-g.svg" width="120">
+  </div>
+</section>
+
+<hr>
+
+<!-- SOBRE BLANCO -->
+<section class="on-white">
+  <div class="item">
+    <p class="label">Sobre blanco</p>
+    <img src="/logo-g.svg" width="120">
+  </div>
+</section>
+
+<hr>
+
+<!-- SOBRE NEGRO (ícono invertido: fondo negro, icono blanco) -->
+<section class="on-black">
+  <div class="item">
+    <p class="label">Sobre negro</p>
+    <!-- Versión invertida manual -->
+    <svg viewBox="0 0 100 100" width="120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="100" height="100" rx="20" fill="#111"/>
+      <path d="M 50,67 C 32,63 8,46 8,29 C 21,31 44,63 50,67 Z" fill="white"/>
+      <path d="M 50,67 C 68,63 92,46 92,29 C 79,31 56,63 50,67 Z" fill="white"/>
+      <path d="M 50,67 C 41,50 40,24 50,14 C 60,24 59,50 50,67 Z" fill="white"/>
+      <path d="M 31,77 Q 50,89 69,77" stroke="white" stroke-width="2.2" stroke-dasharray="4.5 3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<hr>
+
+<!-- TAMAÑOS -->
+<section class="on-cream">
+  <div class="item">
+    <p class="label">Favicon · 32px</p>
+    <img src="/logo-g.svg" width="32">
+  </div>
+  <div class="item">
+    <p class="label">Nav · 48px</p>
+    <img src="/logo-g.svg" width="48">
+  </div>
+  <div class="item">
+    <p class="label">Normal · 80px</p>
+    <img src="/logo-g.svg" width="80">
+  </div>
+  <div class="item">
+    <p class="label">Hero · 140px</p>
+    <img src="/logo-g.svg" width="140">
+  </div>
+  <div class="item">
+    <p class="label">Impresión · 220px</p>
+    <img src="/logo-g.svg" width="220">
+  </div>
+</section>
+
+<hr>
+
+<!-- VARIANTE DORADO -->
+<section class="on-dark" style="gap:64px;">
+  <div class="item">
+    <p class="label">Fondo oscuro</p>
+    <!-- Logo original (fondo verde) sobre fondo verde oscuro -->
+    <img src="/logo-g.svg" width="100">
+  </div>
+  <div class="item">
+    <p class="label">Variante dorada</p>
+    <!-- Ícono en dorado sobre verde -->
+    <svg viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="100" height="100" rx="20" fill="#005F02"/>
+      <path d="M 50,67 C 32,63 8,46 8,29 C 21,31 44,63 50,67 Z" fill="#B3A86A"/>
+      <path d="M 50,67 C 68,63 92,46 92,29 C 79,31 56,63 50,67 Z" fill="#B3A86A"/>
+      <path d="M 50,67 C 41,50 40,24 50,14 C 60,24 59,50 50,67 Z" fill="#B3A86A"/>
+      <path d="M 31,77 Q 50,89 69,77" stroke="#B3A86A" stroke-width="2.2" stroke-dasharray="4.5 3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="item">
+    <p class="label">Outline crema</p>
+    <!-- Outline sobre oscuro -->
+    <svg viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="100" height="100" rx="20" fill="none" stroke="#F0E8C4" stroke-width="2"/>
+      <path d="M 50,67 C 32,63 8,46 8,29 C 21,31 44,63 50,67 Z" fill="#F0E8C4"/>
+      <path d="M 50,67 C 68,63 92,46 92,29 C 79,31 56,63 50,67 Z" fill="#F0E8C4"/>
+      <path d="M 50,67 C 41,50 40,24 50,14 C 60,24 59,50 50,67 Z" fill="#F0E8C4"/>
+      <path d="M 31,77 Q 50,89 69,77" stroke="#F0E8C4" stroke-width="2.2" stroke-dasharray="4.5 3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+</body>
+</html>

@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     // import { Resend } from "resend";
     // const resend = new Resend(process.env.RESEND_API_KEY);
     // await resend.emails.send({
-    //   from: "Sitio Sandro Grand <noreply@tudominio.com>",
+    //   from: "Sitio Mijo Grand <noreply@tudominio.com>",
     //   to: "sandro@tumail.com",
     //   subject: `Nueva consulta de ${data.nombre} — ${data.zona}`,
     //   text: `

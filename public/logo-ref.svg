@@ -1,0 +1,18 @@
+<svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ELEMENTO IZQUIERDO — forma M, dos picos orgánicos -->
+  <path d="M 8,118
+           C 8,68  12,28  26,12
+           C 38,28  44,58  52,66
+           C 60,58  68,26  80,18
+           C 92,32  96,72  96,118
+           Z"
+        fill="#2C5E3C"/>
+
+  <!-- ELEMENTO DERECHO — 3 bandas arqueadas, puntas afiladas -->
+
+  <path d="M 108,38  Q 158,24  210,34  Q 158,46  108,38 Z" fill="#2C5E3C"/>
+  <path d="M 108,68  Q 158,54  210,64  Q 158,76  108,68 Z" fill="#2C5E3C"/>
+  <path d="M 108,98  Q 158,84  210,94  Q 158,106 108,98 Z" fill="#2C5E3C"/>
+
+</svg>

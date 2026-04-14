@@ -1,29 +1,46 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+// handleEnded removed — timing controlled by CLIP_DURATION timer
 import { motion } from "framer-motion";
 import LogoMark from "./LogoMark";
+import CampoButton from "./CampoButton";
 
-const VIDEOS = ["/campo-01.mp4", "/campo-02.mp4"];
+const VIDEOS = [
+  "/campo-01.mp4",
+  "/campo-02.mp4",
+  "/campo-03.mp4",
+  "/campo-04.mp4",
+  "/campo-05.mp4",
+  "/campo-06.mp4",
+];
+
+const CLIP_DURATION = 6; // segundos por clip
 
 export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const videoRef0 = useRef<HTMLVideoElement>(null);
-  const videoRef1 = useRef<HTMLVideoElement>(null);
-  const videoRefs = [videoRef0, videoRef1];
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    videoRef0.current?.play().catch(() => {});
-  }, []);
-
-  const handleEnded = useCallback((idx: number) => {
-    const next = 1 - idx;
+  const advance = useCallback((from: number) => {
+    const next = (from + 1) % VIDEOS.length;
     setActiveIdx(next);
     setTimeout(() => {
-      const v = videoRefs[next].current;
+      const v = videoRefs.current[next];
       if (v) { v.currentTime = 0; v.play().catch(() => {}); }
     }, 60);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Programa el avance cada vez que cambia el clip activo
+  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => advance(activeIdx), CLIP_DURATION * 1000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [activeIdx, advance]);
+
+  useEffect(() => {
+    videoRefs.current[0]?.play().catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -34,34 +51,20 @@ export default function Hero() {
      */
     <section
       id="inicio"
-      style={{
-        display: "grid",
-        gridTemplateRows: "1fr",
-        gridTemplateColumns: "1fr",
-        minHeight: "100dvh",
-        width: "100%",
-        backgroundColor: "#050c06",
-        position: "relative",
-      }}
+      className="hero-section"
+      data-navdark="true"
     >
       {/* ── Video background ── */}
       {VIDEOS.map((src, i) => (
         <video
           key={src}
-          ref={videoRefs[i]}
+          ref={(el) => { videoRefs.current[i] = el; }}
           src={src}
           muted
-          autoPlay={i === 0}
           playsInline
-          preload={i === 0 ? "auto" : "metadata"}
-          onEnded={() => handleEnded(i)}
+          preload={i === 0 ? "auto" : "none"}
+          className="hero-bg-video"
           style={{
-            gridArea: "1 / 1",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center center",
-            display: "block",
             opacity: activeIdx === i ? 1 : 0,
             transition: "opacity 1.2s ease-in-out",
             zIndex: 0,
@@ -72,7 +75,8 @@ export default function Hero() {
       {/* ── Overlay base — contraste mínimo WCAG AA ── */}
       <div
         style={{
-          gridArea: "1 / 1",
+          position: "absolute",
+          inset: 0,
           zIndex: 1,
           background: "rgba(3,8,4,0.38)",
           pointerEvents: "none",
@@ -83,10 +87,7 @@ export default function Hero() {
       <LogoMark
         aria-hidden="true"
         style={{
-          gridArea: "1 / 1",
-          position: "relative",
-          alignSelf: "flex-end",
-          justifySelf: "flex-end",
+          position: "absolute",
           right: "-6%",
           bottom: "6%",
           width: "54vw",
@@ -103,7 +104,8 @@ export default function Hero() {
       {/* ── Gradiente cinematográfico — quema top + bottom ── */}
       <div
         style={{
-          gridArea: "1 / 1",
+          position: "absolute",
+          inset: 0,
           zIndex: 2,
           pointerEvents: "none",
           background: `linear-gradient(
@@ -117,10 +119,14 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Contenido principal — misma grid cell, encima de todo ── */}
+      {/* ── Contenido principal — encima de todo ── */}
       <div
         className="flex flex-col justify-end md:justify-center pb-16 md:pb-0"
-        style={{ gridArea: "1 / 1", zIndex: 10, position: "relative" }}
+        style={{
+          position: "relative",
+          zIndex: 10,
+          minHeight: "100dvh",
+        }}
       >
         <div className="max-w-[1250px] mx-auto w-full px-6 md:px-10 md:text-center">
 
@@ -202,46 +208,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.52 }}
           >
-            <a
+            <CampoButton
               href="#contacto"
-              className="inline-flex items-center gap-2 font-sans font-semibold"
-              style={{
-                background: "#F0EBE1",
-                borderRadius: "9999px",
-                padding: "13px 24px 13px 13px",
-                fontSize: "0.9375rem",
-                color: "#0a1f0b",
-                minHeight: "52px",
-                transition: "background 0.25s",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = "#ffffff")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = "#F0EBE1")
-              }
-            >
-              <span
-                style={{
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "50%",
-                  background: "#005F02",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6h8M6 2l4 4-4 4" stroke="#F0EBE1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              Consultar disponibilidad
-            </a>
+              label="Consultar disponibilidad"
+              variant="primary"
+            />
 
             <a
-              href="https://wa.me/5492954000000?text=Hola%20Sandro%2C%20me%20interesa%20el%20mijo%20perenne"
+              href="https://wa.me/5492916481785?text=Hola%20Sandro%2C%20me%20interesa%20el%20mijo%20perenne"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 font-sans font-medium"
