@@ -28,9 +28,9 @@ interface CardTheme {
 const CARDS: CardTheme[] = [
   {
     label: "Semilla propia",
-    subtitulo: "Alta germinación, cosechada en campo propio, disponible diciembre.",
-    descripcion: "Panicum coloratum seleccionado durante 17 años en el sudoeste bonaerense. Una sola compra para una pastura que persiste décadas.",
-    cta: "Consultar disponibilidad",
+    subtitulo: "Alta germinación, cosechada en campo propio. Cosecha diciembre.",
+    descripcion: "Panicum coloratum seleccionado durante 17 años en el sudoeste bonaerense. Una sola siembra para una pastura que persiste décadas.",
+    cta: "Hablar con Sandro",
     href: "#contacto",
     /* Verde pampa oscuro — identidad principal */
     bg: "#1A3D20",
@@ -106,8 +106,8 @@ export default function Oferta() {
               maxWidth: "18ch",
             }}
           >
-            La semilla que produce,{" "}
-            <span style={{ color: "var(--color-dorado)" }}>cosecha y vende el mismo campo.</span>
+            La semilla que nace, crece{" "}
+            <span style={{ color: "var(--color-dorado)" }}>y se cosecha en el mismo campo.</span>
           </h2>
         </motion.div>
 

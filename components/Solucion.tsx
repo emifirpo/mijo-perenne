@@ -139,7 +139,7 @@ export default function Solucion() {
 
             <CampoButton
               href="#contacto"
-              label="Consultar semilla"
+              label="Pedir asesoramiento"
               variant="dark"
               className="self-start"
             />

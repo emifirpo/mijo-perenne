@@ -254,7 +254,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38 }}
           >
-            Sandro Grand produce y vende semilla de mijo perenne en el sudoeste bonaerense. 17 años implantando en campo propio.
+            Sandro Grand siembra y cosecha mijo perenne en el sudoeste bonaerense desde 2007. Si querés implantarlo en tu campo, te guía en el proceso.
           </motion.p>
 
           {/* CTAs */}
@@ -266,7 +266,7 @@ export default function Hero() {
           >
             <CampoButton
               href="#contacto"
-              label="Consultar disponibilidad"
+              label="Hablar con Sandro"
               variant="primary"
             />
 

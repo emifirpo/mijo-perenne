@@ -12,6 +12,7 @@ const MILESTONES = [
     desc: "Implantó su primer lote de mijo perenne. No como experiencia piloto — como apuesta productiva real en campo propio.",
     img: "/problema-01.jpg",
     pos: "center top",
+    video: "/hereford-2007.mp4",
   },
   {
     year: "2011",
@@ -81,8 +82,9 @@ function SequentialVideo({ videos }: { videos: string[] }) {
 }
 
 export default function Sandro() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const trackRef   = useRef<HTMLDivElement>(null);
+  const wrapperRef    = useRef<HTMLDivElement>(null);
+  const trackRef      = useRef<HTMLDivElement>(null);
+  const firstCardRef  = useRef<HTMLDivElement>(null);
 
   /* ── Layout state (responsive) ── */
   const [isMobile, setIsMobile]           = useState(false);
@@ -92,6 +94,7 @@ export default function Sandro() {
   const [trackPadLeft, setTrackPadLeft]   = useState(80);
   const [scrollAmt, setScrollAmt]         = useState(1200);
   const [isDark, setIsDark]               = useState(false);
+  const [lineY, setLineY]                 = useState(LINE_TOP);
   const [darkThreshold, setDarkThreshold] = useState(0.92);
 
   useEffect(() => {
@@ -129,6 +132,22 @@ export default function Sandro() {
     calc();
     window.addEventListener("resize", calc);
     return () => window.removeEventListener("resize", calc);
+  }, []);
+
+  /* ── lineY: posición real de la línea del timeline cuando los cards están centrados ── */
+  useEffect(() => {
+    const measure = () => {
+      const card  = firstCardRef.current;
+      const track = trackRef.current;
+      if (!card || !track) return;
+      // offsetTop del card dentro del track cuando alignItems:center
+      const cardTop = card.offsetTop;
+      setLineY(cardTop + LINE_TOP);
+    };
+    const ro = new ResizeObserver(measure);
+    if (trackRef.current) ro.observe(trackRef.current);
+    measure();
+    return () => ro.disconnect();
   }, []);
 
   /* ── Scroll ── */
@@ -170,221 +189,251 @@ export default function Sandro() {
   const lineWidth = MILESTONES.length * cardW + (MILESTONES.length - 1) * gap;
 
   return (
-    <motion.div
-      id="sandro"
-      ref={wrapperRef}
-      style={{ position: "relative", height: `calc(100dvh + ${scrollAmt}px)`, backgroundColor: wrapperBg }}
-    >
-      {/* Sticky viewport — transparente para dejar pasar el backgroundColor del wrapper */}
+    <section id="sandro" style={{ backgroundColor: "var(--color-base)" }}>
+
+      {/* ══ HEADER — contenido, sin sangrar bordes, como las demás secciones ═══ */}
       <div
         style={{
-          position: "sticky",
-          top: 0,
-          height: "100dvh",
-          overflow: "hidden",
+          maxWidth: "1250px",
+          margin: "0 auto",
+          padding: isMobile
+            ? `clamp(64px, 10vh, 96px) ${padX}px clamp(48px, 7vh, 64px)`
+            : `clamp(80px, 10vh, 120px) ${padX}px clamp(64px, 8vh, 80px)`,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: "flex-end",
+          gap: isMobile ? "28px" : "clamp(40px, 6vw, 80px)",
         }}
       >
-        {/* ── Header ── */}
-        <div
-          style={{
-            maxWidth: "1250px",
-            margin: "0 auto",
-            width: "100%",
-            padding: isMobile
-              ? `clamp(64px, 12vh, 96px) ${padX}px clamp(16px, 2.5vh, 28px)`
-              : `clamp(72px, 9vh, 108px) ${padX}px clamp(20px, 3vh, 36px)`,
-            flexShrink: 0,
-            // Mobile: columna. Desktop: fila con espacio entre título y descripción.
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            alignItems: isMobile ? "flex-start" : "flex-end",
-            justifyContent: "space-between",
-            gap: isMobile ? "10px" : "0",
-          }}
-        >
-          <div>
-            <p className="tag-label" style={{ marginBottom: "12px" }}>Quién es Sandro</p>
-            <h2
-              className="font-sans"
-              style={{
-                fontSize: isMobile
-                  ? "clamp(1.6rem, 7vw, 2rem)"
-                  : "clamp(1.8rem, 3.2vw, 2.8rem)",
-                fontWeight: 800,
-                lineHeight: 1.05,
-                letterSpacing: "-0.035em",
-                color: colorTitle,
-                margin: 0,
-                transition,
-              }}
-            >
-              Sandro Grand
-            </h2>
-          </div>
-
-          {/* Descripción: en mobile va debajo del título (columna), en desktop a la derecha */}
+        {/* Texto: tag + título + descripción + badge */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <p className="tag-label" style={{ marginBottom: "14px" }}>Quién es Sandro</p>
+          <h2
+            className="font-sans"
+            style={{
+              fontSize: isMobile
+                ? "clamp(2.2rem, 9vw, 3rem)"
+                : "clamp(2.6rem, 4vw, 4.2rem)",
+              fontWeight: 800,
+              lineHeight: 0.97,
+              letterSpacing: "-0.038em",
+              color: "var(--color-text-primary)",
+              margin: 0,
+            }}
+          >
+            Sandro Grand
+          </h2>
           <p
             className="font-sans"
             style={{
-              fontSize: isMobile ? "0.8125rem" : "clamp(0.875rem, 1.05vw, 0.9375rem)",
-              lineHeight: 1.75,
-              color: colorSecond,
-              maxWidth: isMobile ? "100%" : "38ch",
-              paddingBottom: isMobile ? "0" : "4px",
-              transition: `color 1.0s cubic-bezier(0.16,1,0.3,1)`,
+              marginTop: "18px",
+              fontSize: isMobile ? "0.875rem" : "clamp(0.9375rem, 1.1vw, 1.0625rem)",
+              lineHeight: 1.85,
+              color: "var(--color-text-secondary)",
+              maxWidth: "42ch",
             }}
           >
             Productor ganadero de cuarta generación en Jacinto Arauz. 17 años implantando, cosechando y viviendo del mijo perenne en campo propio.
           </p>
+          <div style={{ marginTop: "24px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <div style={{ width: "26px", height: "1px", background: "var(--color-dorado)" }} />
+            <span
+              className="font-sans"
+              style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-dorado)" }}
+            >
+              Est. 2007 · Jacinto Arauz, La Pampa
+            </span>
+          </div>
         </div>
 
-        {/* ── Timeline track ── */}
-        <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-          <motion.div
-            ref={trackRef}
-            style={{
-              x,
-              display: "flex",
-              alignItems: "flex-start",
-              height: "100%",
-              paddingLeft: `${trackPadLeft}px`,
-              paddingRight: `${padX}px`,
-              willChange: "transform",
-              position: "relative",
-            }}
-          >
-            {/* Línea horizontal — ancho explícito para cubrir todo el contenido */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                left: `${trackPadLeft}px`,
-                width: `${lineWidth}px`,
-                top: `${LINE_TOP}px`,
-                height: "1px",
-                background: colorLine,
-                transition: "background 1.0s cubic-bezier(0.16,1,0.3,1)",
-                pointerEvents: "none",
-              }}
-            />
+        {/* Foto — contenida, con border-radius, igual que las cards del timeline */}
+        <div
+          style={{
+            width: isMobile ? "100%" : "clamp(260px, 28vw, 400px)",
+            height: isMobile ? "280px" : "clamp(340px, 52vh, 520px)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            position: "relative",
+            flexShrink: 0,
+            background: "var(--color-surface-3)",
+          }}
+        >
+          <Image
+            src="/sandro.jpeg"
+            alt="Sandro Grand en el campo"
+            fill
+            sizes="(max-width: 767px) 90vw, 400px"
+            priority
+            style={{ objectFit: "cover", objectPosition: "center 30%" }}
+          />
+        </div>
+      </div>
 
-            {/* Cards */}
-            {MILESTONES.map((m, i) => (
-              <motion.div
-                key={m.year}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      {/* ══ TIMELINE — sticky cuando entra al viewport ════════════════════ */}
+      <motion.div
+        ref={wrapperRef}
+        style={{
+          position: "relative",
+          height: `calc(100dvh + ${scrollAmt}px)`,
+          backgroundColor: wrapperBg,
+        }}
+      >
+        <div
+          style={{
+            position: "sticky",
+            top: 0,
+            height: "100dvh",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ overflow: "hidden", position: "relative" }}>
+            <motion.div
+              ref={trackRef}
+              style={{
+                x,
+                display: "flex",
+                alignItems: "center",
+                paddingLeft: `${trackPadLeft}px`,
+                paddingRight: `${padX}px`,
+                willChange: "transform",
+                position: "relative",
+              }}
+            >
+              {/* Línea horizontal */}
+              <div
+                aria-hidden="true"
                 style={{
-                  width: `${cardW}px`,
-                  flexShrink: 0,
-                  marginRight: i < MILESTONES.length - 1 ? `${gap}px` : 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  paddingTop: `${CARD_PT}px`,
-                  paddingBottom: isMobile ? "16px" : "clamp(20px, 3vh, 36px)",
+                  position: "absolute",
+                  left: `${trackPadLeft}px`,
+                  width: `${lineWidth}px`,
+                  top: `${LINE_TOP}px`,
+                  height: "1px",
+                  background: colorLine,
+                  transition: "background 1.0s cubic-bezier(0.16,1,0.3,1)",
+                  pointerEvents: "none",
                 }}
-              >
-                {/* Year pill */}
-                <div style={{ position: "relative", zIndex: 1, marginBottom: isMobile ? "12px" : "clamp(16px, 2.2vh, 24px)", flexShrink: 0 }}>
-                  <span
-                    className="font-sans font-semibold"
+              />
+
+              {/* Cards */}
+              {MILESTONES.map((m, i) => (
+                <motion.div
+                  key={m.year}
+                  ref={i === 0 ? firstCardRef : undefined}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    width: `${cardW}px`,
+                    flexShrink: 0,
+                    marginRight: i < MILESTONES.length - 1 ? `${gap}px` : 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "auto",
+                    paddingTop: `${CARD_PT}px`,
+                    paddingBottom: isMobile ? "16px" : "clamp(20px, 3vh, 36px)",
+                  }}
+                >
+                  {/* Year pill */}
+                  <div style={{ position: "relative", zIndex: 1, marginBottom: isMobile ? "12px" : "clamp(16px, 2.2vh, 24px)", flexShrink: 0 }}>
+                    <span
+                      className="font-sans font-semibold"
+                      style={{
+                        display: "inline-block",
+                        background: m.year === "Hoy" ? "var(--color-dorado)" : "var(--color-dark)",
+                        color: m.year === "Hoy" ? "var(--color-dark)" : "var(--color-text-on-dark)",
+                        borderRadius: "9999px",
+                        padding: "5px 14px",
+                        fontSize: "0.7rem",
+                        letterSpacing: "0.04em",
+                        lineHeight: `${PILL_H - 10}px`,
+                      }}
+                    >
+                      {m.year}
+                    </span>
+                  </div>
+
+                  {/* Título */}
+                  <p
+                    className="font-sans"
                     style={{
-                      display: "inline-block",
-                      background: m.year === "Hoy" ? "var(--color-dorado)" : "var(--color-dark)",
-                      color: m.year === "Hoy" ? "var(--color-dark)" : "var(--color-text-on-dark)",
-                      borderRadius: "9999px",
-                      padding: "5px 14px",
-                      fontSize: "0.7rem",
-                      letterSpacing: "0.04em",
-                      lineHeight: `${PILL_H - 10}px`,
+                      fontSize: isMobile ? "0.9375rem" : "clamp(0.9375rem, 1.15vw, 1.05rem)",
+                      fontWeight: 700,
+                      lineHeight: 1.28,
+                      color: colorTitle,
+                      letterSpacing: "-0.022em",
+                      marginBottom: "6px",
+                      flexShrink: 0,
+                      transition,
                     }}
                   >
-                    {m.year}
-                  </span>
-                </div>
+                    {m.title}
+                  </p>
 
-                {/* Título */}
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: isMobile ? "0.9375rem" : "clamp(0.9375rem, 1.15vw, 1.05rem)",
-                    fontWeight: 700,
-                    lineHeight: 1.28,
-                    color: colorTitle,
-                    letterSpacing: "-0.022em",
-                    marginBottom: "6px",
-                    flexShrink: 0,
-                    transition,
-                  }}
-                >
-                  {m.title}
-                </p>
+                  {/* Descripción */}
+                  <p
+                    className="font-sans"
+                    style={{
+                      fontSize: isMobile ? "0.8125rem" : "clamp(0.8125rem, 0.92vw, 0.875rem)",
+                      lineHeight: 1.6,
+                      color: colorBody,
+                      marginBottom: isMobile ? "12px" : "clamp(14px, 2vh, 22px)",
+                      flexShrink: 0,
+                      transition: `color 1.0s cubic-bezier(0.16,1,0.3,1)`,
+                    }}
+                  >
+                    {m.desc}
+                  </p>
 
-                {/* Descripción */}
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: isMobile ? "0.8125rem" : "clamp(0.8125rem, 0.92vw, 0.875rem)",
-                    lineHeight: 1.6,
-                    color: colorBody,
-                    marginBottom: isMobile ? "12px" : "clamp(14px, 2vh, 22px)",
-                    flexShrink: 0,
-                    transition: `color 1.0s cubic-bezier(0.16,1,0.3,1)`,
-                  }}
-                >
-                  {m.desc}
-                </p>
-
-                {/* Imagen / Video */}
-                <div
-                  style={{
-                    flex: 1,
-                    position: "relative",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    minHeight: "80px",
-                    background: "var(--color-surface-3)",
-                  }}
-                >
-                  {"videos" in m && m.videos ? (
-                    <SequentialVideo videos={m.videos} />
-                  ) : m.video ? (
-                    <video
-                      src={m.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : (
-                    <Image
-                      src={m.img}
-                      alt={m.title}
-                      fill
-                      sizes="(max-width: 767px) 90vw, (max-width: 1024px) 50vw, 600px"
-                      className="object-cover"
-                      style={{ objectPosition: m.pos }}
-                    />
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                  {/* Imagen / Video */}
+                  <div
+                    style={{
+                      position: "relative",
+                      borderRadius: "14px",
+                      overflow: "hidden",
+                      height: isMobile ? "200px" : "400px",
+                      flexShrink: 0,
+                      background: "var(--color-surface-3)",
+                    }}
+                  >
+                    {"videos" in m && m.videos ? (
+                      <SequentialVideo videos={m.videos} />
+                    ) : m.video ? (
+                      <video
+                        src={m.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        src={m.img}
+                        alt={m.title}
+                        fill
+                        sizes="(max-width: 767px) 90vw, (max-width: 1024px) 50vw, 600px"
+                        className="object-cover"
+                        style={{ objectPosition: m.pos }}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
+      </motion.div>
 
-      </div>
-    </motion.div>
+    </section>
   );
 }

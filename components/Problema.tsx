@@ -14,7 +14,7 @@ import {
 const CARDS = [
   {
     num: "01",
-    subtitulo: "Jul · Ago · Sep",
+    subtitulo: "Nov · Dic · Ene · Feb · Mar · Abr",
     titulo: "El bache estival",
     texto:
       "Las pasturas naturales detienen su crecimiento y el rodeo presiona sobre un forraje que no alcanza. El ganadero compra lo que el campo no da.",

@@ -273,8 +273,8 @@ Fundación:    Est. 2007
 Superficie:   200 hectáreas en producción permanente
 Rendimiento:  3.500 kg/ha MS promedio
 Proteína:     12-15%
-Siembra:      3-5 kg/ha · profundidad 1-2 cm
-Implantación: agosto-septiembre
+Siembra:      5-8 kg/ha · profundidad 1-2 cm
+Implantación: octubre-noviembre
 Cosecha:      diciembre
 Rebrote:      septiembre (sin costo, sin laboreo)
 Tolerancia:   -18°C · raíces hasta 3m · resistente a sequías

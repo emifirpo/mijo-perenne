@@ -14,10 +14,10 @@ const CampoWireframe = dynamic(() => import("./CampoWireframe"), { ssr: false })
 const PASOS = [
   {
     num: "01",
-    periodo: "Ago – Sep",
+    periodo: "Oct – Nov",
     titulo: "Implantación",
     texto: "Una sola siembra. Semilla propia seleccionada, laboreo mínimo. En 6-8 semanas el cultivo está establecido.",
-    detalle: "3-5 kg/ha · profundidad 1-2 cm",
+    detalle: "5-8 kg/ha · profundidad 1-2 cm",
   },
   {
     num: "02",

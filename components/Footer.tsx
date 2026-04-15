@@ -83,7 +83,7 @@ export default function Footer() {
               {[
                 { label: "Zona", value: "Jacinto Arauz, La Pampa" },
                 { label: "Coordenadas", value: "−38.12° S · −63.56° O" },
-                { label: "Semilla disponible", value: "Cosecha diciembre · consultar stock" },
+                { label: "Cosecha propia", value: "Diciembre · cada año en campo propio" },
               ].map((d) => (
                 <div key={d.label}>
                   <p
@@ -134,7 +134,7 @@ export default function Footer() {
                 className="font-sans"
                 style={{ fontSize: "0.72rem", color: "var(--color-text-on-dark-muted)", letterSpacing: "0.06em" }}
               >
-                o consultá por semilla
+                o consultá sobre tu implantación
               </span>
               <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
             </div>
