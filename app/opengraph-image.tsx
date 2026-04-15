@@ -4,33 +4,36 @@ export const alt = "Mijo Grand — Semilla de Mijo Perenne · Jacinto Arauz, La 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Panícula SVG mark — reusable inline component
-function Panicula({
-  size: s,
-  color,
-  opacity = 1,
-}: {
-  size: number;
-  color: string;
-  opacity?: number;
-}) {
+/**
+ * LogoMark inline — 7 rayos trapezoidales + 2 franjas de la pampa.
+ * Mismo SVG que components/LogoMark.tsx, sin dependencias externas.
+ */
+function LogoMarkSVG({ size: s, color }: { size: number; color: string }) {
   return (
     <svg
       width={s}
-      height={s}
-      viewBox="0 0 64 64"
+      height={Math.round(s * (92 / 112))}
+      viewBox="44 30 112 92"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ opacity }}
     >
-      {/* Arms */}
-      <rect x="-4" y="-14" width="8" height="14" rx="4" fill={color} transform="translate(32,35) rotate(-50)" />
-      <rect x="-4" y="-18" width="8" height="18" rx="4" fill={color} transform="translate(32,35) rotate(-24)" />
-      <rect x="-4" y="-22" width="8" height="22" rx="4" fill={color} transform="translate(32,35) rotate(0)" />
-      <rect x="-4" y="-18" width="8" height="18" rx="4" fill={color} transform="translate(32,35) rotate(24)" />
-      <rect x="-4" y="-14" width="8" height="14" rx="4" fill={color} transform="translate(32,35) rotate(50)" />
-      {/* Hub + stem */}
-      <circle cx="32" cy="35" r="4.5" fill={color} />
-      <rect x="28.5" y="35" width="7" height="13" rx="3.5" fill={color} />
+      {/* 7 rayos trapezoidales — panícula */}
+      <polygon points="97.35,95.64 64.70,79.33 77.05,62.35 102.65,88.36" fill={color} />
+      <polygon points="96.36,94.65 64.47,60.96 81.46,48.61 103.64,89.35" fill={color} />
+      <polygon points="95.72,93.39 73.64,44.84 93.61,38.35 104.28,90.61" fill={color} />
+      <polygon points="95.50,92.00 89.50,34.00 110.50,34.00 104.50,92.00" fill={color} />
+      <polygon points="95.72,90.61 106.39,38.35 126.36,44.84 104.28,93.39" fill={color} />
+      <polygon points="96.36,89.35 118.54,48.61 135.53,60.96 103.64,94.65" fill={color} />
+      <polygon points="97.35,88.36 122.95,62.35 135.30,79.33 102.65,95.64" fill={color} />
+      {/* Franja superior — horizonte */}
+      <path
+        d="M 52,98 Q 76,89 100,93 Q 124,97 148,88 L 148,95 Q 124,104 100,100 Q 76,96 52,105 Z"
+        fill={color}
+      />
+      {/* Franja inferior — suelo */}
+      <path
+        d="M 48,110 Q 74,100 100,105 Q 126,110 152,100 L 152,108 Q 126,118 100,113 Q 74,108 48,118 Z"
+        fill={color}
+      />
     </svg>
   );
 }
@@ -45,13 +48,12 @@ export default function Image() {
           display: "flex",
           flexDirection: "row",
           overflow: "hidden",
-          // Thin perimeter border in teal-green
           outline: "6px solid #004A01",
         }}
       >
-        {/* ══════════════════════════════════════════
+        {/* ══════════════════════════════════════
             LEFT PANEL — crema, texto
-        ══════════════════════════════════════════ */}
+        ══════════════════════════════════════ */}
         <div
           style={{
             width: 460,
@@ -60,33 +62,19 @@ export default function Image() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            padding: "52px 52px 52px 52px",
+            padding: "52px",
             flexShrink: 0,
           }}
         >
-          {/* Top: logo mark + name */}
+          {/* Top: logo mark + wordmark */}
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            {/* Logo mark — green square */}
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                backgroundColor: "#005F02",
-                borderRadius: 10,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Panicula size={28} color="#F0EBE1" />
-            </div>
+            <LogoMarkSVG size={44} color="#005F02" />
             <span
               style={{
                 color: "#005F02",
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
+                letterSpacing: "-0.03em",
                 fontFamily: "Georgia, serif",
               }}
             >
@@ -95,14 +83,14 @@ export default function Image() {
           </div>
 
           {/* Bottom: title block */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {/* Eyebrow tag */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {/* Eyebrow */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
-                marginBottom: 20,
+                gap: 10,
+                marginBottom: 22,
               }}
             >
               <div
@@ -133,12 +121,12 @@ export default function Image() {
                 display: "flex",
                 flexDirection: "column",
                 color: "#005F02",
-                fontSize: 68,
+                fontSize: 66,
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
                 lineHeight: 0.95,
                 fontFamily: "Georgia, serif",
-                marginBottom: 22,
+                marginBottom: 24,
               }}
             >
               <span>Semilla de</span>
@@ -160,17 +148,11 @@ export default function Image() {
               El forraje que se siembra una vez y vuelve solo. Cada año.
             </div>
 
-            {/* Meta line */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
+            {/* Meta */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span
                 style={{
-                  color: "rgba(0,95,2,0.4)",
+                  color: "rgba(0,95,2,0.38)",
                   fontSize: 12,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -190,7 +172,7 @@ export default function Image() {
               />
               <span
                 style={{
-                  color: "rgba(0,95,2,0.4)",
+                  color: "rgba(0,95,2,0.38)",
                   fontSize: 12,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -203,9 +185,9 @@ export default function Image() {
           </div>
         </div>
 
-        {/* ══════════════════════════════════════════
-            RIGHT PANEL — verde pampa, panícula gráfica
-        ══════════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            RIGHT PANEL — verde pampa, logo gráfico
+        ══════════════════════════════════════ */}
         <div
           style={{
             flex: 1,
@@ -218,42 +200,20 @@ export default function Image() {
             overflow: "hidden",
           }}
         >
-          {/* Texture ring — faint circle behind */}
+          {/* Ghost — segunda capa, grande y desplazada, muy tenue */}
           <div
             style={{
               position: "absolute",
-              width: 560,
-              height: 560,
-              borderRadius: "50%",
-              border: "1px solid rgba(240,235,225,0.08)",
-              display: "flex",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              width: 440,
-              height: 440,
-              borderRadius: "50%",
-              border: "1px solid rgba(240,235,225,0.06)",
-              display: "flex",
-            }}
-          />
-
-          {/* Ghost panícula — offset, very faint, scale */}
-          <div
-            style={{
-              position: "absolute",
-              top: -60,
-              right: -80,
+              top: -80,
+              right: -100,
               display: "flex",
               opacity: 0.06,
             }}
           >
-            <Panicula size={520} color="#F0EBE1" />
+            <LogoMarkSVG size={620} color="#F0EBE1" />
           </div>
 
-          {/* Main panícula — bold, centered */}
+          {/* Marca principal — centrada, cream/gold */}
           <div
             style={{
               display: "flex",
@@ -261,24 +221,21 @@ export default function Image() {
               justifyContent: "center",
             }}
           >
-            <Panicula size={400} color="#C5BC82" opacity={0.92} />
+            <LogoMarkSVG size={420} color="#C5BC82" />
           </div>
 
-          {/* Coordinate tag — bottom right */}
+          {/* Coordenadas — esquina inferior derecha */}
           <div
             style={{
               position: "absolute",
               bottom: 28,
               right: 36,
               display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-              gap: 2,
             }}
           >
             <span
               style={{
-                color: "rgba(240,232,196,0.3)",
+                color: "rgba(240,232,196,0.28)",
                 fontSize: 11,
                 letterSpacing: "0.12em",
                 fontFamily: "Arial, sans-serif",
@@ -290,8 +247,6 @@ export default function Image() {
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   );
 }
