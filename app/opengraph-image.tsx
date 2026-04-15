@@ -4,6 +4,37 @@ export const alt = "Mijo Grand — Semilla de Mijo Perenne · Jacinto Arauz, La 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Panícula SVG mark — reusable inline component
+function Panicula({
+  size: s,
+  color,
+  opacity = 1,
+}: {
+  size: number;
+  color: string;
+  opacity?: number;
+}) {
+  return (
+    <svg
+      width={s}
+      height={s}
+      viewBox="0 0 64 64"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ opacity }}
+    >
+      {/* Arms */}
+      <rect x="-4" y="-14" width="8" height="14" rx="4" fill={color} transform="translate(32,35) rotate(-50)" />
+      <rect x="-4" y="-18" width="8" height="18" rx="4" fill={color} transform="translate(32,35) rotate(-24)" />
+      <rect x="-4" y="-22" width="8" height="22" rx="4" fill={color} transform="translate(32,35) rotate(0)" />
+      <rect x="-4" y="-18" width="8" height="18" rx="4" fill={color} transform="translate(32,35) rotate(24)" />
+      <rect x="-4" y="-14" width="8" height="14" rx="4" fill={color} transform="translate(32,35) rotate(50)" />
+      {/* Hub + stem */}
+      <circle cx="32" cy="35" r="4.5" fill={color} />
+      <rect x="28.5" y="35" width="7" height="13" rx="3.5" fill={color} />
+    </svg>
+  );
+}
+
 export default function Image() {
   return new ImageResponse(
     (
@@ -12,251 +43,247 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          backgroundColor: "#030804",
-          position: "relative",
+          flexDirection: "row",
           overflow: "hidden",
-          fontFamily: "Georgia, serif",
+          // Thin perimeter border in teal-green
+          outline: "6px solid #004A01",
         }}
       >
-        {/* Radial glow — top-left */}
+        {/* ══════════════════════════════════════════
+            LEFT PANEL — crema, texto
+        ══════════════════════════════════════════ */}
         <div
           style={{
-            position: "absolute",
-            top: -200,
-            left: -200,
-            width: 700,
-            height: 700,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(0,95,2,0.28) 0%, transparent 70%)",
-            display: "flex",
-          }}
-        />
-
-        {/* Noise/grain overlay (subtle border) */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            border: "1px solid rgba(179,168,106,0.10)",
-            display: "flex",
-          }}
-        />
-
-        {/* ── Logo mark — decorative, top-right ── */}
-        <div
-          style={{
-            position: "absolute",
-            top: -60,
-            right: -60,
-            display: "flex",
-            opacity: 0.07,
-          }}
-        >
-          <svg
-            width="420"
-            height="420"
-            viewBox="0 0 64 64"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="-4" y="-14" width="8" height="14" rx="4"
-              fill="#F0EBE1"
-              transform="translate(32,35) rotate(-50)"
-            />
-            <rect
-              x="-4" y="-18" width="8" height="18" rx="4"
-              fill="#F0EBE1"
-              transform="translate(32,35) rotate(-24)"
-            />
-            <rect
-              x="-4" y="-22" width="8" height="22" rx="4"
-              fill="#F0EBE1"
-              transform="translate(32,35) rotate(0)"
-            />
-            <rect
-              x="-4" y="-18" width="8" height="18" rx="4"
-              fill="#F0EBE1"
-              transform="translate(32,35) rotate(24)"
-            />
-            <rect
-              x="-4" y="-14" width="8" height="14" rx="4"
-              fill="#F0EBE1"
-              transform="translate(32,35) rotate(50)"
-            />
-            <circle cx="32" cy="35" r="4.5" fill="#F0EBE1" />
-            <rect x="28.5" y="35" width="7" height="13" rx="3.5" fill="#F0EBE1" />
-          </svg>
-        </div>
-
-        {/* ── Main content — vertically centered ── */}
-        <div
-          style={{
+            width: 460,
+            height: "100%",
+            backgroundColor: "#F5EDD8",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
-            flex: 1,
-            paddingLeft: 96,
-            paddingRight: 96,
-            paddingTop: 72,
-            paddingBottom: 72,
+            justifyContent: "space-between",
+            padding: "52px 52px 52px 52px",
+            flexShrink: 0,
           }}
         >
-          {/* Tag label */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-              marginBottom: 32,
-            }}
-          >
-            {/* Panícula mark — small, inline */}
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 64 64"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="-4" y="-14" width="8" height="14" rx="4"
-                fill="#B3A86A"
-                transform="translate(32,35) rotate(-50)"
-              />
-              <rect
-                x="-4" y="-18" width="8" height="18" rx="4"
-                fill="#B3A86A"
-                transform="translate(32,35) rotate(-24)"
-              />
-              <rect
-                x="-4" y="-22" width="8" height="22" rx="4"
-                fill="#B3A86A"
-                transform="translate(32,35) rotate(0)"
-              />
-              <rect
-                x="-4" y="-18" width="8" height="18" rx="4"
-                fill="#B3A86A"
-                transform="translate(32,35) rotate(24)"
-              />
-              <rect
-                x="-4" y="-14" width="8" height="14" rx="4"
-                fill="#B3A86A"
-                transform="translate(32,35) rotate(50)"
-              />
-              <circle cx="32" cy="35" r="4.5" fill="#B3A86A" />
-              <rect x="28.5" y="35" width="7" height="13" rx="3.5" fill="#B3A86A" />
-            </svg>
-
-            <span
+          {/* Top: logo mark + name */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            {/* Logo mark — green square */}
+            <div
               style={{
-                color: "rgba(179,168,106,0.7)",
-                fontSize: 15,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                fontFamily: "Arial, sans-serif",
-                fontWeight: 500,
+                width: 44,
+                height: 44,
+                backgroundColor: "#005F02",
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Panicum coloratum · Jacinto Arauz, La Pampa
+              <Panicula size={28} color="#F0EBE1" />
+            </div>
+            <span
+              style={{
+                color: "#005F02",
+                fontSize: 18,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "Georgia, serif",
+              }}
+            >
+              Mijo Grand
             </span>
           </div>
 
-          {/* Title */}
-          <div
-            style={{
-              color: "#F0E8C4",
-              fontSize: 96,
-              fontWeight: 700,
-              letterSpacing: "-0.03em",
-              lineHeight: 0.95,
-              marginBottom: 32,
-              fontFamily: "Georgia, serif",
-            }}
-          >
-            Mijo Grand
-          </div>
+          {/* Bottom: title block */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {/* Eyebrow tag */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                marginBottom: 20,
+              }}
+            >
+              <div
+                style={{
+                  width: 28,
+                  height: 2,
+                  backgroundColor: "#B3A86A",
+                  display: "flex",
+                }}
+              />
+              <span
+                style={{
+                  color: "#B3A86A",
+                  fontSize: 12,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  fontFamily: "Arial, sans-serif",
+                  fontWeight: 600,
+                }}
+              >
+                Panicum coloratum
+              </span>
+            </div>
 
-          {/* Gold divider */}
+            {/* Main title */}
+            <div
+              style={{
+                color: "#005F02",
+                fontSize: 68,
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                lineHeight: 0.95,
+                fontFamily: "Georgia, serif",
+                marginBottom: 22,
+              }}
+            >
+              Semilla de{"\n"}Mijo Perenne
+            </div>
+
+            {/* Tagline */}
+            <div
+              style={{
+                color: "rgba(0,95,2,0.55)",
+                fontSize: 15,
+                lineHeight: 1.6,
+                fontFamily: "Arial, sans-serif",
+                fontStyle: "italic",
+                marginBottom: 28,
+              }}
+            >
+              El forraje que se siembra una vez y vuelve solo. Cada año.
+            </div>
+
+            {/* Meta line */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+              }}
+            >
+              <span
+                style={{
+                  color: "rgba(0,95,2,0.4)",
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontFamily: "Arial, sans-serif",
+                }}
+              >
+                Est. 2007
+              </span>
+              <span
+                style={{
+                  width: 3,
+                  height: 3,
+                  borderRadius: "50%",
+                  backgroundColor: "rgba(179,168,106,0.5)",
+                  display: "flex",
+                }}
+              />
+              <span
+                style={{
+                  color: "rgba(0,95,2,0.4)",
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontFamily: "Arial, sans-serif",
+                }}
+              >
+                Jacinto Arauz, La Pampa
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* ══════════════════════════════════════════
+            RIGHT PANEL — verde pampa, panícula gráfica
+        ══════════════════════════════════════════ */}
+        <div
+          style={{
+            flex: 1,
+            height: "100%",
+            backgroundColor: "#005F02",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Texture ring — faint circle behind */}
           <div
             style={{
-              width: 64,
-              height: 2,
-              backgroundColor: "#B3A86A",
-              marginBottom: 32,
+              position: "absolute",
+              width: 560,
+              height: 560,
+              borderRadius: "50%",
+              border: "1px solid rgba(240,235,225,0.08)",
+              display: "flex",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              width: 440,
+              height: 440,
+              borderRadius: "50%",
+              border: "1px solid rgba(240,235,225,0.06)",
               display: "flex",
             }}
           />
 
-          {/* Tagline */}
+          {/* Ghost panícula — offset, very faint, scale */}
           <div
             style={{
-              color: "rgba(240,232,196,0.72)",
-              fontSize: 26,
-              lineHeight: 1.55,
-              fontFamily: "Georgia, serif",
-              fontStyle: "italic",
-              maxWidth: 640,
-              marginBottom: 48,
+              position: "absolute",
+              top: -60,
+              right: -80,
+              display: "flex",
+              opacity: 0.06,
             }}
           >
-            El forraje que se siembra una vez y vuelve solo. Cada año.
+            <Panicula size={520} color="#F0EBE1" />
           </div>
 
-          {/* Bottom meta */}
+          {/* Main panícula — bold, centered */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 24,
+              justifyContent: "center",
+            }}
+          >
+            <Panicula size={400} color="#C5BC82" opacity={0.92} />
+          </div>
+
+          {/* Coordinate tag — bottom right */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 28,
+              right: 36,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+              gap: 2,
             }}
           >
             <span
               style={{
-                color: "rgba(179,168,106,0.5)",
-                fontSize: 14,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
+                color: "rgba(240,232,196,0.3)",
+                fontSize: 11,
+                letterSpacing: "0.12em",
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Semilla de Mijo Perenne
-            </span>
-            <span
-              style={{
-                width: 4,
-                height: 4,
-                borderRadius: "50%",
-                backgroundColor: "rgba(179,168,106,0.3)",
-                display: "flex",
-              }}
-            />
-            <span
-              style={{
-                color: "rgba(179,168,106,0.5)",
-                fontSize: 14,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "Arial, sans-serif",
-              }}
-            >
-              Est. 2007
+              −38.12° S · −63.56° O
             </span>
           </div>
         </div>
-
-        {/* Bottom border accent */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 3,
-            backgroundColor: "#B3A86A",
-            opacity: 0.4,
-            display: "flex",
-          }}
-        />
       </div>
     ),
     {
