@@ -85,6 +85,7 @@ export default function Sandro() {
   const wrapperRef    = useRef<HTMLDivElement>(null);
   const trackRef      = useRef<HTMLDivElement>(null);
   const firstCardRef  = useRef<HTMLDivElement>(null);
+  const pillRef       = useRef<HTMLDivElement>(null);
 
   /* ── Layout state (responsive) ── */
   const [isMobile, setIsMobile]           = useState(false);
@@ -134,20 +135,29 @@ export default function Sandro() {
     return () => window.removeEventListener("resize", calc);
   }, []);
 
-  /* ── lineY: posición real de la línea del timeline cuando los cards están centrados ── */
+  /* ── lineY: posición exacta de la pill respecto al track via getBoundingClientRect ── */
   useEffect(() => {
     const measure = () => {
-      const card  = firstCardRef.current;
-      const track = trackRef.current;
-      if (!card || !track) return;
-      // offsetTop del card dentro del track cuando alignItems:center
-      const cardTop = card.offsetTop;
-      setLineY(cardTop + LINE_TOP);
+      requestAnimationFrame(() => {
+        const pill  = pillRef.current;
+        const track = trackRef.current;
+        if (!pill || !track) return;
+        const pillRect  = pill.getBoundingClientRect();
+        const trackRect = track.getBoundingClientRect();
+        // Centro visual de la pill relativo al top del track
+        setLineY(pillRect.top - trackRect.top + pillRect.height / 2);
+      });
     };
+    // Medir al montar, al resize, y 150ms después (animaciones asentadas)
+    const t = setTimeout(measure, 150);
     const ro = new ResizeObserver(measure);
     if (trackRef.current) ro.observe(trackRef.current);
-    measure();
-    return () => ro.disconnect();
+    window.addEventListener("resize", measure);
+    return () => {
+      clearTimeout(t);
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   /* ── Scroll ── */
@@ -309,7 +319,7 @@ export default function Sandro() {
                   position: "absolute",
                   left: `${trackPadLeft}px`,
                   width: `${lineWidth}px`,
-                  top: `${LINE_TOP}px`,
+                  top: `${lineY}px`,
                   height: "1px",
                   background: colorLine,
                   transition: "background 1.0s cubic-bezier(0.16,1,0.3,1)",
@@ -334,11 +344,11 @@ export default function Sandro() {
                     flexDirection: "column",
                     height: "auto",
                     paddingTop: `${CARD_PT}px`,
-                    paddingBottom: isMobile ? "16px" : "clamp(20px, 3vh, 36px)",
+                    paddingBottom: "clamp(20px, 3vh, 36px)",
                   }}
                 >
                   {/* Year pill */}
-                  <div style={{ position: "relative", zIndex: 1, marginBottom: isMobile ? "12px" : "clamp(16px, 2.2vh, 24px)", flexShrink: 0 }}>
+                  <div ref={i === 0 ? pillRef : undefined} style={{ position: "relative", zIndex: 1, marginBottom: isMobile ? "12px" : "clamp(16px, 2.2vh, 24px)", flexShrink: 0 }}>
                     <span
                       className="font-sans font-semibold"
                       style={{
@@ -394,7 +404,7 @@ export default function Sandro() {
                       position: "relative",
                       borderRadius: "14px",
                       overflow: "hidden",
-                      height: isMobile ? "200px" : "400px",
+                      height: isMobile ? "400px" : "400px",
                       flexShrink: 0,
                       background: "var(--color-surface-3)",
                     }}
