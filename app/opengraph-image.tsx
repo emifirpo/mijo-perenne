@@ -130,6 +130,8 @@ export default function Image() {
             {/* Main title */}
             <div
               style={{
+                display: "flex",
+                flexDirection: "column",
                 color: "#005F02",
                 fontSize: 68,
                 fontWeight: 700,
@@ -139,12 +141,14 @@ export default function Image() {
                 marginBottom: 22,
               }}
             >
-              Semilla de{"\n"}Mijo Perenne
+              <span>Semilla de</span>
+              <span>Mijo Perenne</span>
             </div>
 
             {/* Tagline */}
             <div
               style={{
+                display: "flex",
                 color: "rgba(0,95,2,0.55)",
                 fontSize: 15,
                 lineHeight: 1.6,
