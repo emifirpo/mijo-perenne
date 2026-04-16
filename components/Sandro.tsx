@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
+import TextReveal from "./TextReveal";
 
 /* ── Datos del timeline ─────────────────────────────────────── */
 const MILESTONES = [
@@ -218,7 +219,8 @@ export default function Sandro() {
         {/* Texto: tag + título + descripción + badge */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <p className="tag-label" style={{ marginBottom: "14px" }}>Quién es Sandro</p>
-          <h2
+          <TextReveal
+            as="h2"
             className="font-sans"
             style={{
               fontSize: isMobile
@@ -232,7 +234,7 @@ export default function Sandro() {
             }}
           >
             Sandro Grand
-          </h2>
+          </TextReveal>
           <p
             className="font-sans"
             style={{

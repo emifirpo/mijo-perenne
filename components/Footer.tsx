@@ -2,6 +2,7 @@
 
 import LogoMark from "./LogoMark";
 import CampoButton from "./CampoButton";
+import TextReveal from "./TextReveal";
 
 function WAIcon() {
   return (
@@ -52,7 +53,8 @@ export default function Footer() {
             >
               Contacto directo
             </p>
-            <h2
+            <TextReveal
+              as="h2"
               className="font-sans mb-6"
               style={{
                 fontSize: "clamp(2rem, 4vw, 3.4rem)",
@@ -64,7 +66,7 @@ export default function Footer() {
               Hablemos de cómo el mijo perenne
               <br />
               <span style={{ color: "var(--color-dorado)" }}>puede cambiar tu campo.</span>
-            </h2>
+            </TextReveal>
             <p
               className="font-sans mb-10"
               style={{

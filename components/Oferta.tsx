@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import MijoPlantSVG from "./MijoPlantSVG";
 import TecnicoSVG from "./TecnicoSVG";
 import CampoButton from "./CampoButton";
+import TextReveal from "./TextReveal";
 
 /* ── Tipado de la paleta por card ─────────────────────────────── */
 interface CardTheme {
@@ -96,7 +97,8 @@ export default function Oferta() {
           transition={{ duration: 0.6 }}
         >
           <p className="tag-label mb-5" style={{ color: "var(--color-dorado)" }}>Lo que ofrezco</p>
-          <h2
+          <TextReveal
+            as="h2"
             className="font-sans"
             style={{
               fontSize: "clamp(2rem, 4vw, 3.2rem)",
@@ -108,7 +110,7 @@ export default function Oferta() {
           >
             La semilla que nace, crece{" "}
             <span style={{ color: "var(--color-dorado)" }}>y se cosecha en el mismo campo.</span>
-          </h2>
+          </TextReveal>
         </motion.div>
 
         {/* Cards */}

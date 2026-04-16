@@ -8,6 +8,7 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
+import TextReveal from "./TextReveal";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -183,7 +184,8 @@ export default function Problema() {
           >
             El problema
           </p>
-          <h2
+          <TextReveal
+            as="h2"
             className="font-serif"
             style={{
               fontSize: "clamp(2rem,4vw,3.5rem)",
@@ -197,7 +199,7 @@ export default function Problema() {
             El verdadero costo
             <br />
             del bache forrajero.
-          </h2>
+          </TextReveal>
           <p
             className="font-sans"
             style={{

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import TextReveal from "./TextReveal";
 
 // ── Medios verificados ────────────────────────────────────────────────────────
 const MEDIA = [
@@ -98,7 +99,8 @@ export default function Respaldo() {
           transition={{ duration: 0.65 }}
         >
           <p className="tag-label mb-3">Respaldo técnico</p>
-          <h2
+          <TextReveal
+            as="h2"
             className="font-sans"
             style={{
               fontSize: "clamp(1.5rem, 2.8vw, 2.2rem)",
@@ -108,7 +110,7 @@ export default function Respaldo() {
             }}
           >
             No lo dice Sandro solo.
-          </h2>
+          </TextReveal>
         </motion.div>
 
         {/* ── "Aparecemos en" strip ───────────────────────────────────────────── */}

@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import CampoButton from "./CampoButton";
+import TextReveal from "./TextReveal";
 
 const ScrollyVideo = dynamic(
   () => import("scrolly-video/dist/ScrollyVideo.cjs.jsx"),
@@ -82,7 +83,8 @@ export default function Solucion() {
           >
             <p className="tag-label mb-4">La solución</p>
 
-            <h2
+            <TextReveal
+              as="h2"
               className="font-sans mb-5"
               style={{
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
@@ -96,7 +98,7 @@ export default function Solucion() {
               <span style={{ color: "var(--color-dorado)" }}>
                 Un costo que no se repite.
               </span>
-            </h2>
+            </TextReveal>
 
             <p
               className="font-sans mb-3"

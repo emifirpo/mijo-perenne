@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import dynamic from "next/dynamic";
+import TextReveal from "./TextReveal";
 
 const ScrollyVideo = dynamic(
   () => import("scrolly-video/dist/ScrollyVideo.cjs.jsx"),
@@ -100,7 +101,8 @@ function PasoItem({ paso, index }: { paso: typeof PASOS[0]; index: number }) {
           </span>
         </div>
 
-        <h3
+        <TextReveal
+          as="h3"
           className="font-sans font-semibold mb-3"
           style={{
             fontSize: "clamp(1.3rem, 2.2vw, 1.7rem)",
@@ -110,7 +112,7 @@ function PasoItem({ paso, index }: { paso: typeof PASOS[0]; index: number }) {
           }}
         >
           {paso.titulo}
-        </h3>
+        </TextReveal>
 
         <p
           className="font-sans mb-5"
@@ -222,10 +224,14 @@ export default function Ciclo() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
                 <div>
                   <p className="tag-label mb-4" style={{ color: "var(--color-dorado)" }}>El ciclo</p>
-                  <h2 className="font-sans" style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", color: "#F0E8C4", letterSpacing: "-0.03em", lineHeight: 1.0 }}>
+                  <TextReveal
+                    as="h2"
+                    className="font-sans"
+                    style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", color: "#F0E8C4", letterSpacing: "-0.03em", lineHeight: 1.0 }}
+                  >
                     De la siembra al rebrote,<br />
                     <em className="not-italic" style={{ color: "var(--color-dorado)" }}>sin volver a empezar.</em>
-                  </h2>
+                  </TextReveal>
                 </div>
                 <p className="font-sans" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)", lineHeight: 1.8, color: "rgba(240,232,196,0.62)", maxWidth: "42ch" }}>
                   Una gramínea perenne que se implanta una vez y persiste por décadas.

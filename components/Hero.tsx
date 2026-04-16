@@ -1,38 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-// handleEnded removed — timing controlled by CLIP_DURATION timer
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import LogoMark from "./LogoMark";
 import CampoButton from "./CampoButton";
+import TextReveal from "./TextReveal";
 
-const VIDEOS = [
-  "/campo-01.mp4",
-  "/campo-02.mp4",
-  "/campo-03.mp4",
-  "/campo-04.mp4",
-  "/campo-05.mp4",
-  "/campo-06.mp4",
-];
+const PHOTO = "/vacas.png";
 
-const CLIP_DURATION = 6; // segundos por clip
+// Tiempos en que la photo de fondo se oscurece por scroll
+const FADE_START = 0.15; // 15% del viewport
+const FADE_END   = 0.80; // 80% del viewport
 
 export default function Hero() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const rafRef = useRef<number | null>(null);
-  /* Refs para mutación directa de DOM — sin setState en scroll */
+  const photoRef   = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const rafRef     = useRef<number | null>(null);
 
-  /* ── Scroll → fade + parallax ────────────────────────────────────
-     Ambos efectos se aplican directamente al DOM en el RAF callback.
-     Sin setState → sin re-renders de React → 0 jank en scroll.
-
-     Fade overlay : 0 → 1 entre scrollY = 0.15vh y 0.80vh
-     Parallax     : contenido sube 0.30× scrollY (efecto profundidad)
-     ─────────────────────────────────────────────────────────────── */
+  /* ── RAF scroll handler ──────────────────────────────────────────────────
+     Aplica directamente al DOM sin setState → cero re-renders en scroll.
+     1. Fade overlay (negro) controlado por scroll
+     2. Parallax del contenido (sube 0.28×)
+     3. Parallax diferencial de las 3 capas de la foto
+  ──────────────────────────────────────────────────────────────────────── */
   useEffect(() => {
     const onScroll = () => {
       if (rafRef.current !== null) return;
@@ -41,89 +32,71 @@ export default function Hero() {
         const vh = window.innerHeight;
         const sy = window.scrollY;
 
-        // — Fade overlay
-        const rawProgress = sy / vh;
-        const fadeProgress = (rawProgress - 0.15) / (0.80 - 0.15);
-        const opacity = Math.min(1, Math.max(0, fadeProgress));
-        if (overlayRef.current) overlayRef.current.style.opacity = String(opacity);
-
-        // — Parallax del contenido: sube suavemente mientras se oscurece
-        const parallaxPx = sy * 0.28;
-        if (contentRef.current) {
-          contentRef.current.style.transform = `translateY(-${parallaxPx}px)`;
+        // 1. Fade overlay
+        const progress = (sy / vh - FADE_START) / (FADE_END - FADE_START);
+        if (overlayRef.current) {
+          overlayRef.current.style.opacity = String(Math.min(1, Math.max(0, progress)));
         }
+
+        // 2. Parallax del contenido
+        if (contentRef.current) {
+          contentRef.current.style.transform = `translateY(-${sy * 0.28}px)`;
+        }
+
+        // 3. Parallax suave de la foto de fondo
+        if (photoRef.current) photoRef.current.style.transform = `translateY(${sy * 0.18}px)`;
       });
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    onScroll(); // estado inicial
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
-  const advance = useCallback((from: number) => {
-    const next = (from + 1) % VIDEOS.length;
-    setActiveIdx(next);
-    setTimeout(() => {
-      const v = videoRefs.current[next];
-      if (v) { v.currentTime = 0; v.play().catch(() => {}); }
-    }, 60);
-  }, []);
-
-  // Programa el avance cada vez que cambia el clip activo
-  useEffect(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => advance(activeIdx), CLIP_DURATION * 1000);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [activeIdx, advance]);
-
-  useEffect(() => {
-    videoRefs.current[0]?.play().catch(() => {});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    /*
-     * CSS Grid overlay — la técnica más confiable para video BG en Safari iOS.
-     * Todos los children ocupan la misma cell (1/1), se apilan por z-index.
-     * Evita los bugs de overflow:hidden + position:absolute + inset en WebKit.
-     */
     <section
       id="inicio"
       className="hero-section"
       data-navdark="true"
     >
-      {/* ── Video background ── */}
-      {VIDEOS.map((src, i) => (
-        <video
-          key={src}
-          ref={(el) => { videoRefs.current[i] = el; }}
-          src={src}
-          muted
-          playsInline
-          preload={i === 0 ? "auto" : "none"}
-          className="hero-bg-video"
-          style={{
-            opacity: activeIdx === i ? 1 : 0,
-            transition: "opacity 1.2s ease-in-out",
-            zIndex: 0,
-          }}
-        />
-      ))}
-
-      {/* ── Overlay base — contraste mínimo WCAG AA ── */}
+      {/* ═══ FOTO DE FONDO ═══ */}
       <div
+        ref={photoRef}
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-12%",
+          left: 0,
+          right: 0,
+          bottom: "-12%",
+          backgroundImage: `url(${PHOTO})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          willChange: "transform",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ════════════════════════════════════════════════════
+          OVERLAYS (igual que antes, encima de las capas)
+      ════════════════════════════════════════════════════ */}
+
+      {/* Overlay base — contraste mínimo WCAG AA */}
+      <div
+        aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
-          zIndex: 1,
-          background: "rgba(3,8,4,0.38)",
+          zIndex: 3,
+          background: "rgba(3,8,4,0.35)",
           pointerEvents: "none",
         }}
       />
 
-      {/* ── Logo D — watermark fondo, derecha, fusionado con la oscuridad ── */}
+      {/* LogoMark — watermark tenue derecha */}
       <LogoMark
         aria-hidden="true"
         style={{
@@ -137,29 +110,30 @@ export default function Hero() {
           color: "#F0E8C4",
           opacity: 0.045,
           pointerEvents: "none",
-          zIndex: 2,
+          zIndex: 4,
         }}
       />
 
-      {/* ── Gradiente cinematográfico — quema top + bottom ── */}
+      {/* Gradiente cinematográfico — quema top y bottom */}
       <div
+        aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
-          zIndex: 2,
+          zIndex: 4,
           pointerEvents: "none",
           background: `linear-gradient(
             180deg,
-            rgba(3,8,4,0.72) 0%,
-            rgba(3,8,4,0.10) 30%,
-            rgba(3,8,4,0.06) 55%,
-            rgba(3,8,4,0.60) 82%,
+            rgba(3,8,4,0.78) 0%,
+            rgba(3,8,4,0.12) 28%,
+            rgba(3,8,4,0.06) 52%,
+            rgba(3,8,4,0.55) 80%,
             rgba(3,8,4,0.92) 100%
           )`,
         }}
       />
 
-      {/* ── Fade a negro — driven by scroll, mutado via ref ── */}
+      {/* Fade a negro — driven by scroll, mutado via ref */}
       <div
         ref={overlayRef}
         aria-hidden="true"
@@ -173,7 +147,9 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Contenido principal — parallax via ref, encima del fade ── */}
+      {/* ════════════════════════════════════════════════════
+          CONTENIDO — parallax via ref, encima del fade
+      ════════════════════════════════════════════════════ */}
       <div
         ref={contentRef}
         className="flex flex-col justify-end md:justify-center pb-16 md:pb-0"
@@ -184,11 +160,11 @@ export default function Hero() {
           willChange: "transform",
         }}
       >
-        <div className="max-w-[1250px] mx-auto w-full px-6 md:px-10 md:text-center">
+        <div className="max-w-[1250px] mx-auto w-full px-6 md:px-10">
 
           {/* Eyebrow — coordenadas */}
           <motion.div
-            className="flex items-center gap-2.5 mb-6 md:justify-center"
+            className="flex items-center gap-2.5 mb-6"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1 }}
@@ -216,8 +192,9 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* H1 — DM Sans, bold, protagonista */}
-          <motion.h1
+          {/* H1 — Demo 10 scatter/converge reveal */}
+          <TextReveal
+            as="h1"
             className="font-sans"
             style={{
               fontSize: "clamp(3.1rem, 8.5vw, 7.2rem)",
@@ -226,24 +203,20 @@ export default function Hero() {
               color: "#F0EBE1",
               letterSpacing: "-0.03em",
             }}
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.82, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            delay={0.25}
           >
             El forraje que vuelve solo.{" "}
             <em
               className="not-italic"
-              style={{
-                color: "var(--color-dorado)",
-              }}
+              style={{ color: "var(--color-dorado)" }}
             >
               Cada año.
             </em>
-          </motion.h1>
+          </TextReveal>
 
           {/* Bajada */}
           <motion.p
-            className="font-sans mt-6 max-w-md md:max-w-lg md:mx-auto"
+            className="font-sans mt-6 max-w-md"
             style={{
               fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)",
               fontWeight: 400,
@@ -254,12 +227,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38 }}
           >
-            Sandro Grand siembra y cosecha mijo perenne en el sudoeste bonaerense desde 2007. Si querés implantarlo en tu campo, te guía en el proceso.
+            Sandro Grand siembra y cosecha mijo perenne en el sudoeste bonaerense
+            desde 2007. Si querés implantarlo en tu campo, te guía en el proceso.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            className="flex flex-wrap items-center gap-3 mt-8 md:justify-center"
+            className="flex flex-wrap items-center gap-3 mt-8"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.52 }}
@@ -302,29 +276,40 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Stats — fila separada, debajo de los CTAs */}
+          {/* Stats */}
           <motion.div
-            className="flex items-center gap-8 mt-8 pt-7 md:justify-center"
+            className="flex items-center gap-8 mt-8 pt-7"
             style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.72 }}
           >
             {[
-              { n: "200", u: "hectáreas" },
-              { n: "17+", u: "años en la zona" },
+              { n: "200",  u: "hectáreas" },
+              { n: "17+",  u: "años en la zona" },
               { n: "100%", u: "semilla propia" },
             ].map((s, i) => (
               <div key={i} className="flex flex-col">
                 <span
                   className="font-sans"
-                  style={{ fontSize: "clamp(1.3rem, 2.2vw, 1.75rem)", fontWeight: 700, color: "#F0EBE1", lineHeight: 1, letterSpacing: "-0.03em" }}
+                  style={{
+                    fontSize: "clamp(1.3rem, 2.2vw, 1.75rem)",
+                    fontWeight: 700,
+                    color: "#F0EBE1",
+                    lineHeight: 1,
+                    letterSpacing: "-0.03em",
+                  }}
                 >
                   {s.n}
                 </span>
                 <span
                   className="font-sans mt-1"
-                  style={{ fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(240,235,225,0.35)" }}
+                  style={{
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "rgba(240,235,225,0.35)",
+                  }}
                 >
                   {s.u}
                 </span>
